@@ -9,7 +9,12 @@
   <body>
 
     <%= yield %>
-    <%= render "layouts/footer", landing_page: landing_page? %>
+    
+    <% if landing_page? %>
+      <%= render "layouts/landing_footer" %>
+    <% else %>
+      <%= render "layouts/footer" %>
+    <% end %>
 
   </body>
 </html>

@@ -1,11 +1,10 @@
 .footer
-  | Hello
+  .row
+    .col-xs-12.col-md-7.col-md-offset-1
+      ul.list-inline
+        li = link_to "Explore competitions", ""
+        li = link_to "My competitions", ""
+        li = link_to "Submit a competition", ""
 
-- unless landing_page
-  css:
-    .footer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
+    .col-xs-12.col-md-2
+      = "Made with <3 by KETI"
