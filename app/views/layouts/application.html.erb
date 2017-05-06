@@ -5,16 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
 </head>
   <body>
-
-    <%= yield %>
-    
     <% if landing_page? %>
+      <%= yield %>
       <%= render "layouts/landing_footer" %>
     <% else %>
-      <%= render "layouts/footer" %>
+      <div class="container">
+        <%= yield %>
+        <%= render "layouts/footer" %>
+      </div>
     <% end %>
-
   </body>
 </html>
