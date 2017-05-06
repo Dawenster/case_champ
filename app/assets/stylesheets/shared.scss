@@ -1,3 +1,10 @@
+@media (max-width: 992px) {
+  .container {
+    padding: 0px;
+    width: 100%;
+  }
+}
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.7);
   top: 0;
@@ -6,4 +13,13 @@
   height: 100%;
   position: relative;
   z-index: 1;
+}
+
+.btn-primary {
+  background-color: #270A40;
+  border: #270A40;
+
+  &:hover {
+    background-color: lighten(#270A40, 5%);
+  }
 }

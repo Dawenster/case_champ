@@ -1,22 +1,29 @@
 .landing-background-image
   .overlay
-  .content-over-background-image.hidden-xs
-    h1
+  .content-over-background-image
+    h1.hidden-xs
       | Kellogg | Competitions
+
+    h1.visible-xs
+      div
+        | Kellogg
+      div
+        | Competitions
 
     br
 
-    h2
+    h2.hidden-xs
       | Harnessing the power of
       br
       | Kellogg to solve the world's
       br
       | business challenges.
 
-  .sign-in-box-over-background-image.hidden-xs
-    p.login-title
-      | Student / Admin Login
-    p.login-sub-title
-      | Use your school login for access
-    a.btn.btn-primary
-      | Kellogg Login
+    h2.visible-xs
+      | Harnessing the power of Kellogg to solve the world's business challenges.
+
+  .hidden-xs.hidden-sm
+    = render "sign_up_box"
+
+.visible-xs.visible-sm
+  = render "sign_up_box"

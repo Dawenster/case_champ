@@ -6,16 +6,17 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
   <body>
-    <% if landing_page? %>
-      <%= yield %>
-      <%= render "layouts/landing_footer" %>
-    <% else %>
-      <div class="container">
+    <div class="container">
+      <% if landing_page? %>
+        <%= yield %>
+        <%= render "layouts/landing_footer" %>
+      <% else %>
         <%= yield %>
         <%= render "layouts/footer" %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </body>
 </html>
