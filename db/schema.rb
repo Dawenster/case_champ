@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506060226) do
+ActiveRecord::Schema.define(version: 20170506060905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,26 @@ ActiveRecord::Schema.define(version: 20170506060226) do
     t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "sponsor"
+    t.text     "description"
+    t.string   "city"
+    t.string   "state_and_country"
+    t.integer  "min_team_size"
+    t.integer  "max_team_size"
+    t.string   "num_kellogg_teams_allowed"
+    t.text     "logistics"
+    t.text     "application"
+    t.string   "application_url"
+    t.string   "contact_name"
+    t.string   "position_and_organization"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
