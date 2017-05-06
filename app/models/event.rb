@@ -12,5 +12,6 @@ class Event < ActiveRecord::Base
   validates :competition_id,            presence: true
 
   belongs_to :competition
+  has_many :prizes
 
 end
