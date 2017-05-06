@@ -212,6 +212,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   momentjs-rails
+  nested_form
   oj (~> 2.12.14)
   pg
   pry
