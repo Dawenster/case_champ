@@ -1,0 +1,17 @@
+nav.navbar
+  .container-fluid
+    .row
+      .col-xs-12.col-md-10.col-md-offset-1
+        /! Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-navbar-collapse" data-toggle="collapse" type="button" 
+            i.fa.fa-bars
+          a.navbar-brand href="#"
+            | Kellogg | Competitions
+        /! Collect the nav links, forms, and other content for toggling
+        #main-navbar-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li = link_to "Explore competitions", ""
+            li = link_to "My profile", ""
+            li
+              i.fa.fa-search

@@ -7,15 +7,21 @@
   bottom: 0;
   left: 0;
   background-color: #55287C;
-  font-weight: bold;
+  font-weight: bold !important;
   text-transform: uppercase;
   color: #BDA8CE;
+
+  .container {
+    padding: 40px 0px 20px 0px;
+    background-color: #55287C;
+  }
 
   a {
     color: #BDA8CE;
 
     &:hover {
       text-decoration: none;
+      color: lighten(#BDA8CE, 5%);
     }
   }
 }

@@ -14,8 +14,15 @@
         <%= yield %>
         <%= render "layouts/landing_footer" %>
       <% else %>
+        <%= render "layouts/header" %>
         <%= render "layouts/non_landing_css" %>
-        <%= yield %>
+        <div class="row">
+          <div class=" col-xs-12 col-md-10 col-md-offset-1">
+            <div class="inner-container">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
         <%= render "layouts/footer" %>
       <% end %>
     </div>
