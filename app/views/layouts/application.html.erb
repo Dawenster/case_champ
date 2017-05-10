@@ -13,6 +13,11 @@
       <% if landing_page? %>
         <%= yield %>
         <%= render "layouts/landing_footer" %>
+      <% elsif submit_competition_page? %>
+        <%= render "layouts/header" %>
+        <%= render "layouts/non_landing_css" %>
+        <%= yield %>
+        <%= render "layouts/footer" %>
       <% else %>
         <%= render "layouts/header" %>
         <%= render "layouts/non_landing_css" %>
