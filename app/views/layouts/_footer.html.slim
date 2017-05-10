@@ -2,13 +2,14 @@
   .container
     .row
       .col-xs-12.col-md-10.col-md-offset-1
-        ul.list-inline.pull-left
-          li = link_to "Explore competitions", ""
-          li = link_to "My competitions", ""
-          li = link_to "Submit a competition", ""
+        - unless submit_competition_page?
+          ul.list-inline.pull-left
+            li = link_to "Explore competitions", ""
+            li = link_to "My competitions", ""
+            li = link_to "Submit a competition", ""
 
-        .pull-right.hidden-xs.hidden-sm
-          = "Made with <3 by KETI"
+          .pull-right.hidden-xs.hidden-sm
+            = "Made with <3 by KETI"
 
-        .visible-xs.visible-sm
-          = "Made with <3 by KETI"
+          .visible-xs.visible-sm
+            = "Made with <3 by KETI"

@@ -11,7 +11,10 @@ nav.navbar
         /! Collect the nav links, forms, and other content for toggling
         #main-navbar-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li = link_to "Explore competitions", ""
-            li = link_to "My profile", ""
-            li
-              i.fa.fa-search
+            - if submit_competition_page?
+              li = link_to "Go back", root_path
+            - else
+              li = link_to "Explore competitions", ""
+              li = link_to "My profile", ""
+              li
+                i.fa.fa-search
