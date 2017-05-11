@@ -8,45 +8,40 @@
     .col-xs-12.col-md-10.col-md-offset-1
       .inner-container
         .form-container
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
-          div Hello
+          = nested_form_for @competition do |cf|
+            h3
+              | General information
+
+            .form-group
+              = cf.text_field :name, class: "form-control", placeholder: "Competition Name*", required: true
+
+            = cf.fields_for @events do |ef|
+              .form-group
+                = ef.text_field :name, class: "form-control", placeholder: "Iteration* (e.g. #{Time.current.year} or Spring '#{Time.current.year.to_s.last(2)})"
+
+              .form-group
+                = ef.text_field :sponsor, class: "form-control", placeholder: "Sponsor*", required: true
+
+              .form-group
+                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span style='color: red;'>Category*</span>") }, { class: "form-control" }
+
+              .form-group
+                = ef.text_area :description, class: "form-control", placeholder: "Brief Description or Topic*", required: true, rows: 5
+
+              .row
+                .col-xs-12.col-md-6
+                  .form-group
+                    = ef.text_field :city, class: "form-control", placeholder: "Location (City)*", required: true
+
+                .col-xs-12.col-md-6.state-and-country-column
+                  .form-group
+                    = ef.text_field :state_and_country, class: "form-control", placeholder: "Location (State/Country)*", required: true
+
+              h3
+                | Prizes
+
+              = ef.fields_for :prizes do |pf|
+                .form-group
+                  = pf.text_field :description, class: "form-control", placeholder: "#{(pf.index.to_i + 1).ordinalize} Place Prize"
+
+              = ef.link_to_add "Add More", :prizes

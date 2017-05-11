@@ -15,4 +15,9 @@ class Event < ActiveRecord::Base
   has_many :prizes
   has_many :milestones
 
+  accepts_nested_attributes_for :prizes, allow_destroy: true
+  accepts_nested_attributes_for :milestones, allow_destroy: true
+
+  attr_accessible :prizes, :milestones
+
 end

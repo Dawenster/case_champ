@@ -30,6 +30,43 @@
     margin-top: -100px;
     z-index: 100;
     width: 100%;
-    padding: 50px 150px;
+
+    @media (min-width: 992px) {
+      padding: 50px 150px;
+    }
+
+    @media (max-width: 992px) {
+      padding: 10px 30px;
+    }
+
+    h3 {
+      color: #54287B;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      padding: 25px 19px;
+      font-size: 18px;
+      border: 1px solid #54287B;
+    }
+
+    textarea {
+      padding: 15px 19px;
+      font-size: 18px;
+      border: 1px solid #54287B;
+    }
+
+    select, option {
+      height: 52px;
+      padding-left: 20px;
+      color: #999999;
+    }
+
+    .state-and-country-column {
+      @media (min-width: 992px) {
+        padding-left: 0px;
+      }
+    }
   }
 }
