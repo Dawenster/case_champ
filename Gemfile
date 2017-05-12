@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'cloudinary'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'jbuilder', '~> 2.0'
