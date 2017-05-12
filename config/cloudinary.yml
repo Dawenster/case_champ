@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: casechamp
+  api_key: '375164596565835'
+  api_secret: 9X7nye-TAe-IPOGsEzrjiFn_Kyg
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: casechamp
+  api_key: '375164596565835'
+  api_secret: 9X7nye-TAe-IPOGsEzrjiFn_Kyg
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: casechamp
+  api_key: '375164596565835'
+  api_secret: 9X7nye-TAe-IPOGsEzrjiFn_Kyg
+  enhance_image_tag: true
+  static_image_support: false
