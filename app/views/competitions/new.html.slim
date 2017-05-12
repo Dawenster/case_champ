@@ -37,6 +37,21 @@
                   .form-group
                     = ef.text_field :state_and_country, class: "form-control", placeholder: "Location (State/Country)*", required: true
 
+              label.cloudinary-event-image-upload for="cloudinary-fileupload"
+                .row
+                  .col-xs-12.col-sm-3
+                    i.fa.fa-camera
+                  .col-xs-12.col-sm-9
+                    .label-main-text
+                      | Upload cover photo*
+                    .label-sub-text
+                      | Ratio: 5:8
+
+
+              = cl_image_upload_tag(:image_url, html: { id: "cloudinary-fileupload", class: "hide" })
+
+              img#targetImageLocation.hide
+
               h3
                 | Prizes
 

@@ -16,3 +16,22 @@ function ordinal_suffix_of(i) {
   
   return i + "th";
 }
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#targetImageLocation').css('background-image', 'url(' + e.target.result + ')');
+      $("#targetImageLocation").removeClass("hide")
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$(document).ready(function(){
+  $("#cloudinary-fileupload").change(function(){
+    readURL(this);
+  });
+});

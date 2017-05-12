@@ -26,4 +26,4 @@ $(document).ready(function(){
       input.attr("placeholder", ordinal_suffix_of(count) + " Place Prize");
     }
   })
-})
+});
