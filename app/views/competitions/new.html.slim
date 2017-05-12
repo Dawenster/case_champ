@@ -33,7 +33,7 @@
                   .form-group
                     = ef.text_field :city, class: "form-control", placeholder: "Location (City)*", required: true
 
-                .col-xs-12.col-md-6.state-and-country-column
+                .col-xs-12.col-md-6.right-half-column
                   .form-group
                     = ef.text_field :state_and_country, class: "form-control", placeholder: "Location (State/Country)*", required: true
 
@@ -49,3 +49,41 @@
                 .add-more-text
                   = ef.link_to_add "+ Add More", :prizes, :data => { target: ".prizes-holder" }
 
+              br
+
+              h3
+                | Teams
+
+              .row
+                .col-xs-12.col-md-6
+                  .form-group
+                    = ef.text_field :min_team_size, class: "form-control", placeholder: "Min. Team Size", required: true
+
+                .col-xs-12.col-md-6.right-half-column
+                  .form-group
+                    = ef.text_field :max_team_size, class: "form-control", placeholder: "Max. Team Size", required: true
+
+              .form-group
+                = ef.text_field :num_kellogg_teams_allowed, class: "form-control", placeholder: "Number of Kellogg Teams Allowed", required: true, rows: 5
+
+              h3
+                | Important Dates/Milestones
+
+              .milestones-holder
+                = ef.fields_for :milestones do |mf|
+                  .row
+                    .col-xs-12.col-md-4
+                      .form-group
+                        = mf.text_field :deadline_at, class: "form-control date-field", placeholder: "Date#{'*' if mf.index.to_i == 0}"
+                        span.form-control-feedback.date-icon
+                          i.fa.fa-calendar
+
+                    .col-xs-12.col-md-8.right-half-column
+                      .form-group
+                        = mf.text_field :description, class: "form-control", placeholder: "Milestone#{'*' if mf.index.to_i == 0}"
+
+              .pull-right
+                .add-more-text
+                  = ef.link_to_add "+ Add More", :milestones, :data => { target: ".milestones-holder" }
+
+              br

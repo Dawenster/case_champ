@@ -17,7 +17,9 @@ $(document).ready(function(){
   $(document).on('nested:fieldAdded', function(event){
     var field = event.field; 
     var input = field.find("input");
-    var count = $(".prize-field").length;
-    input.attr("placeholder", ordinal_suffix_of(count) + " Place Prize");
+    if (input.hasClass("prize-field")) {
+      var count = $(".prize-field").length;
+      input.attr("placeholder", ordinal_suffix_of(count) + " Place Prize");
+    }
   })
 })

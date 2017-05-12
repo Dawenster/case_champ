@@ -63,7 +63,7 @@
       color: #999999;
     }
 
-    .state-and-country-column {
+    .right-half-column {
       @media (min-width: 992px) {
         padding-left: 0px;
       }
@@ -79,6 +79,16 @@
         text-decoration: none;
         color: lighten(#54287B, 5%);
       }
+    }
+
+    .date-field {
+      padding-right: 40px;
+    }
+
+    .date-icon {
+      right: 20px;
+      font-size: 20px;
+      top: 8px;
     }
   }
 }

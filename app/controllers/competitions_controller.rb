@@ -6,6 +6,9 @@ class CompetitionsController < ApplicationController
     3.times do
       @events.prizes.build
     end
+    3.times do
+      @events.milestones.build
+    end
   end
 
   private
