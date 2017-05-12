@@ -68,5 +68,17 @@
         padding-left: 0px;
       }
     }
+
+    .add-more-text a {
+      font-size: 16px;
+      font-weight: bold;
+      color: #54287B;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+        color: lighten(#54287B, 5%);
+      }
+    }
   }
 }

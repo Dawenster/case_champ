@@ -40,8 +40,12 @@
               h3
                 | Prizes
 
-              = ef.fields_for :prizes do |pf|
-                .form-group
-                  = pf.text_field :description, class: "form-control", placeholder: "#{(pf.index.to_i + 1).ordinalize} Place Prize"
+              .prizes-holder
+                = ef.fields_for :prizes do |pf|
+                  .form-group
+                    = pf.text_field :description, class: "form-control prize-field", placeholder: "#{(pf.index.to_i + 1).ordinalize} Place Prize#{'*' if pf.index.to_i == 0}"
 
-              = ef.link_to_add "Add More", :prizes
+              .pull-right
+                .add-more-text
+                  = ef.link_to_add "+ Add More", :prizes, :data => { target: ".prizes-holder" }
+
