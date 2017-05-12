@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  $('.datepicker').datepicker({
+    format: 'M d, yyyy'
+  });
+
   checkToTriggerNonBlank();
 
   $("#competition_category").change(function() {

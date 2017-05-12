@@ -66,6 +66,8 @@
               .form-group
                 = ef.text_field :num_kellogg_teams_allowed, class: "form-control", placeholder: "Number of Kellogg Teams Allowed", required: true, rows: 5
 
+              br
+
               h3
                 | Important Dates/Milestones
 
@@ -74,7 +76,7 @@
                   .row
                     .col-xs-12.col-md-4
                       .form-group
-                        = mf.text_field :deadline_at, class: "form-control date-field", placeholder: "Date#{'*' if mf.index.to_i == 0}"
+                        = mf.text_field :deadline_at, class: "form-control date-field datepicker", placeholder: "Date#{'*' if mf.index.to_i == 0}"
                         span.form-control-feedback.date-icon
                           i.fa.fa-calendar
 
@@ -87,3 +89,42 @@
                   = ef.link_to_add "+ Add More", :milestones, :data => { target: ".milestones-holder" }
 
               br
+
+              h3
+                | Logistics
+
+              .form-group
+                = ef.text_area :logistics, class: "form-control", placeholder: "Please enter transportation and event logistics", rows: 5
+
+              br
+
+              h3
+                | Application
+
+              .form-group
+                = ef.text_area :application, class: "form-control", placeholder: "Please enter application instructions", rows: 5
+              
+              .form-group
+                = ef.text_field :application_url, class: "form-control", placeholder: "Application URL*", required: true
+
+              br
+
+              h3
+                | Organizer Contact Info
+
+              .form-group
+                = ef.text_field :contact_name, class: "form-control", placeholder: "Name*", required: true
+
+              .form-group
+                = ef.text_field :position_and_organization, class: "form-control", placeholder: "Position, Company*", required: true
+
+              .form-group
+                = ef.text_field :contact_email, class: "form-control", placeholder: "Email*", type: "email", required: true
+
+              .form-group
+                = ef.text_field :contact_phone, class: "form-control", placeholder: "Phone Number", type: "tel"
+
+              br
+                
+              .submit-button-holder
+                = cf.submit "Submit Competition", class: "btn btn-primary"

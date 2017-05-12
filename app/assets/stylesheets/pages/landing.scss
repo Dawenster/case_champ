@@ -50,6 +50,12 @@
     padding: 20px;
     width: 100%;
     font-weight: bold;
+    background-color: #270A40;
+    border: #270A40;
+
+    &:hover {
+      background-color: lighten(#270A40, 5%);
+    }
   }
 
   @media (min-width: 992px) {
