@@ -15,7 +15,7 @@
             .form-group
               = cf.text_field :name, class: "form-control", placeholder: "Competition Name*", required: true
 
-            = cf.fields_for @events do |ef|
+            = cf.fields_for :events do |ef|
               .form-group
                 = ef.text_field :name, class: "form-control", placeholder: "Iteration* (e.g. #{Time.current.year} or Spring '#{Time.current.year.to_s.last(2)})"
 
@@ -37,7 +37,7 @@
                   .form-group
                     = ef.text_field :state_and_country, class: "form-control", placeholder: "Location (State/Country)*", required: true
 
-              label.cloudinary-event-image-upload for="cloudinary-fileupload"
+              label.cloudinary-event-image-upload for="image-fileupload"
                 .row
                   .col-xs-12.col-sm-3
                     i.fa.fa-camera
@@ -48,7 +48,7 @@
                       | Ratio: 5:8
 
 
-              = cl_image_upload_tag(:image_url, html: { id: "cloudinary-fileupload", class: "hide" })
+              = ef.file_field :image_url, id: "image-fileupload", class: "hide"
 
               img#targetImageLocation.hide
 
@@ -57,8 +57,10 @@
 
               .prizes-holder
                 = ef.fields_for :prizes do |pf|
+                  - rank = pf.index.to_i + 1
                   .form-group
-                    = pf.text_field :description, class: "form-control prize-field", placeholder: "#{(pf.index.to_i + 1).ordinalize} Place Prize#{'*' if pf.index.to_i == 0}"
+                    = pf.hidden_field :rank, value: rank, class: "rank-field"
+                    = pf.text_field :description, class: "form-control prize-field", placeholder: "#{rank.ordinalize} Place Prize#{'*' if rank == 1}"
 
               .pull-right
                 .add-more-text
@@ -72,11 +74,11 @@
               .row
                 .col-xs-12.col-md-6
                   .form-group
-                    = ef.text_field :min_team_size, class: "form-control", placeholder: "Min. Team Size", required: true
+                    = ef.text_field :min_team_size, class: "form-control", placeholder: "Min. Team Size", required: true, onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
 
                 .col-xs-12.col-md-6.right-half-column
                   .form-group
-                    = ef.text_field :max_team_size, class: "form-control", placeholder: "Max. Team Size", required: true
+                    = ef.text_field :max_team_size, class: "form-control", placeholder: "Max. Team Size", required: true, onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
 
               .form-group
                 = ef.text_field :num_kellogg_teams_allowed, class: "form-control", placeholder: "Number of Kellogg Teams Allowed", required: true, rows: 5
@@ -120,7 +122,7 @@
                 = ef.text_area :application, class: "form-control", placeholder: "Please enter application instructions", rows: 5
               
               .form-group
-                = ef.text_field :application_url, class: "form-control", placeholder: "Application URL*", required: true
+                = ef.text_field :application_url, class: "form-control", placeholder: "Application URL* (incl. http / https)", required: true, type: "url"
 
               br
 

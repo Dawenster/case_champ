@@ -11,6 +11,22 @@ class CompetitionsController < ApplicationController
     end
   end
 
+  def create
+    @competition = Competition.new(competition_params)
+
+    @competition.category = @competition.category[2..-1]
+
+    cloudinary_result = upload_image_to_cloudinary
+    @competition.events.first.image_url = cloudinary_result["secure_url"]
+
+    if @competition.save
+      redirect_to root_path, notice: "Competition created successfully"
+    else
+      @competition.category = add_leading_spaces(@competition.category)
+      render "new", alert: @competition.errors.full_messages.to_sentence
+    end
+  end
+
   private
 
   def competition_params
@@ -18,8 +34,7 @@ class CompetitionsController < ApplicationController
       :id,
       :name,
       :category,
-
-      event_attributes: [
+      events_attributes: [
         :id,
         :name,
         :sponsor,
@@ -38,8 +53,7 @@ class CompetitionsController < ApplicationController
         :contact_phone,
         :competition_id,
         :_destroy,
-
-        prize_attributes: [
+        prizes_attributes: [
           :id,
           :rank,
           :amount_in_dollars,
@@ -47,8 +61,7 @@ class CompetitionsController < ApplicationController
           :event_id,
           :_destroy
         ],
-
-        milestone_attributes: [
+        milestones_attributes: [
           :id,
           :deadline_at,
           :description,
@@ -57,6 +70,14 @@ class CompetitionsController < ApplicationController
         ]
       ]
     )
+  end
+
+  def upload_image_to_cloudinary
+    raw_image = params[:competition]["events_attributes"]["0"]["image_url"]
+    Cloudinary::Uploader.upload(raw_image)
+  rescue => e
+    Rollbar.error(e)
+    {secure_url: nil}
   end
 
 end

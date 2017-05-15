@@ -24,6 +24,11 @@ $(document).ready(function(){
     if (input.hasClass("prize-field")) {
       var count = $(".prize-field").length;
       input.attr("placeholder", ordinal_suffix_of(count) + " Place Prize");
+      input.siblings(".rank-field").val(count);
+    } else {
+      $('.datepicker').datepicker({
+        format: 'M d, yyyy'
+      });
     }
   })
 });

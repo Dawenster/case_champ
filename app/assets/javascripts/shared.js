@@ -31,7 +31,7 @@ function readURL(input) {
 }
 
 $(document).ready(function(){
-  $("#cloudinary-fileupload").change(function(){
+  $("#image-fileupload").change(function(){
     readURL(this);
   });
 });

@@ -1,6 +1,8 @@
 class Prize < ActiveRecord::Base
 
-  validates :rank, :description, :event_id, presence: true
+  attr_accessible :rank, :amount_in_dollars, :description, :event_id
+
+  validates :rank, :description, presence: true
 
   belongs_to :event
 

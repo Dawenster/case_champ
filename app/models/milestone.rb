@@ -1,6 +1,8 @@
 class Milestone < ActiveRecord::Base
 
-  validates :deadline_at, :description, :event_id, presence: true
+  attr_accessible :deadline_at, :description, :event_id
+
+  validates :deadline_at, :description, presence: true
 
   belongs_to :event
 
