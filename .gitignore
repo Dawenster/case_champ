@@ -17,3 +17,5 @@
 /tmp
 
 config/initializers/aaa_env_variables.rb
+
+config/initializers/cloudinary.rb
