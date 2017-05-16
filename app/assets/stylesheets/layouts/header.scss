@@ -1,7 +1,7 @@
 .navbar {
   background-color: #55287C;
   border-radius: 0px;
-  padding: 15px 0px;
+  padding: 15px 0px 15px 0px;
   font-size: 18px;
   margin-bottom: 0px;
 
@@ -9,13 +9,21 @@
     color: white;
   }
 
+  .text-to-center-vertically {
+    margin-top: 12px;
+  }
+
   .navbar-brand {
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
 
+    .image-holder {
+      border-right: 1px solid white;
+    }
+
     @media (max-width: 992px) {
-      margin-top: 5px;
+      margin-top: -7px;
     }
   }
 
@@ -50,5 +58,9 @@
 
   #main-navbar-collapse {
     box-shadow: none;
+    
+    @media (min-width: 992px) {
+      margin-top: 15px;
+    }
   }
 }
