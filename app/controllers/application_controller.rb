@@ -10,10 +10,14 @@ class ApplicationController < ActionController::Base
   end
 
   def submit_competition_page?
-    params[:controller] == "competitions" && params[:action] == "new"
+    params[:controller] == "competitions" && (params[:action] == "new" || params[:action] == "create")
   end
 
   def add_leading_spaces(string)
     "&nbsp;&nbsp;#{string}".html_safe
+  end
+
+  def clean_up_competition_error_messages(errors)
+    errors.full_messages.to_sentence.gsub("Event", "Competition").gsub("base ", "").downcase
   end
 end

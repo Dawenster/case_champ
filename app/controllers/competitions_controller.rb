@@ -23,7 +23,9 @@ class CompetitionsController < ApplicationController
       redirect_to root_path, notice: "Competition created successfully"
     else
       @competition.category = add_leading_spaces(@competition.category)
-      render "new", alert: @competition.errors.full_messages.to_sentence
+      alert_message = "Sorry! Unable to submit: #{clean_up_competition_error_messages(@competition.errors)}"
+      flash.now["alert"] = alert_message
+      render "new"
     end
   end
 
@@ -52,6 +54,7 @@ class CompetitionsController < ApplicationController
         :contact_email,
         :contact_phone,
         :competition_id,
+        :image_url,
         :_destroy,
         prizes_attributes: [
           :id,

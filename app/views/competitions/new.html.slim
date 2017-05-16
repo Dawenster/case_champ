@@ -17,13 +17,13 @@
 
             = cf.fields_for :events do |ef|
               .form-group
-                = ef.text_field :name, class: "form-control", placeholder: "Iteration* (e.g. #{Time.current.year} or Spring '#{Time.current.year.to_s.last(2)})"
+                = ef.text_field :name, class: "form-control", placeholder: "Iteration* (e.g. #{Time.current.year} or Spring '#{Time.current.year.to_s.last(2)})", required: true
 
               .form-group
                 = ef.text_field :sponsor, class: "form-control", placeholder: "Sponsor*", required: true
 
               .form-group
-                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span style='color: red;'>Category*</span>") }, { class: "form-control" }
+                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span style='color: red;'>Category*</span>") }, { class: "form-control", required: true }
 
               .form-group
                 = ef.text_area :description, class: "form-control", placeholder: "Brief Description or Topic*", required: true, rows: 5
@@ -60,7 +60,10 @@
                   - rank = pf.index.to_i + 1
                   .form-group
                     = pf.hidden_field :rank, value: rank, class: "rank-field"
-                    = pf.text_field :description, class: "form-control prize-field", placeholder: "#{rank.ordinalize} Place Prize#{'*' if rank == 1}"
+                    - if rank == 1
+                      = pf.text_field :description, class: "form-control prize-field", placeholder: "#{rank.ordinalize} Place Prize*", required: true
+                    - else
+                      = pf.text_field :description, class: "form-control prize-field", placeholder: "#{rank.ordinalize} Place Prize"
 
               .pull-right
                 .add-more-text
@@ -74,14 +77,14 @@
               .row
                 .col-xs-12.col-md-6
                   .form-group
-                    = ef.text_field :min_team_size, class: "form-control", placeholder: "Min. Team Size", required: true, onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
+                    = ef.text_field :min_team_size, class: "form-control", placeholder: "Min. Team Size", onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
 
                 .col-xs-12.col-md-6.right-half-column
                   .form-group
-                    = ef.text_field :max_team_size, class: "form-control", placeholder: "Max. Team Size", required: true, onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
+                    = ef.text_field :max_team_size, class: "form-control", placeholder: "Max. Team Size", onkeypress: "return event.charCode >= 48 && event.charCode <= 57", type: "number"
 
               .form-group
-                = ef.text_field :num_kellogg_teams_allowed, class: "form-control", placeholder: "Number of Kellogg Teams Allowed", required: true, rows: 5
+                = ef.text_field :num_kellogg_teams_allowed, class: "form-control", placeholder: "Number of Kellogg Teams Allowed", rows: 5
 
               br
 
@@ -90,16 +93,25 @@
 
               .milestones-holder
                 = ef.fields_for :milestones do |mf|
+                  - index = mf.index.to_i
                   .row
                     .col-xs-12.col-md-4
                       .form-group
-                        = mf.text_field :deadline_at, class: "form-control date-field datepicker", placeholder: "Date#{'*' if mf.index.to_i == 0}"
-                        span.form-control-feedback.date-icon
-                          i.fa.fa-calendar
+                        - if index == 0
+                          = mf.text_field :deadline_at, class: "form-control date-field datepicker", placeholder: "Date*", required: true
+                          span.form-control-feedback.date-icon
+                            i.fa.fa-calendar
+                        - else
+                          = mf.text_field :deadline_at, class: "form-control date-field datepicker", placeholder: "Date"
+                          span.form-control-feedback.date-icon
+                            i.fa.fa-calendar
 
                     .col-xs-12.col-md-8.right-half-column
                       .form-group
-                        = mf.text_field :description, class: "form-control", placeholder: "Milestone#{'*' if mf.index.to_i == 0}"
+                        - if index == 0
+                          = mf.text_field :description, class: "form-control", placeholder: "Milestone*", required: true
+                        - else
+                          = mf.text_field :description, class: "form-control", placeholder: "Milestone"
 
               .pull-right
                 .add-more-text
