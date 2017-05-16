@@ -15,6 +15,7 @@ class Event < ActiveRecord::Base
   validates :contact_name,              presence: true
   validates :position_and_organization, presence: true
   validates :contact_email,             presence: true
+  validates :image_url,                 presence: true
 
   validate :team_size_range
   validate :has_at_least_one_prize
