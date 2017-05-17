@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_leading_spaces(string)
-    "&nbsp;&nbsp;#{string}".html_safe
+    "&nbsp;&nbsp;&nbsp;#{string}".html_safe
   end
 
   def clean_up_competition_error_messages(errors)

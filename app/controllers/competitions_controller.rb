@@ -14,7 +14,7 @@ class CompetitionsController < ApplicationController
   def create
     @competition = Competition.new(competition_params)
 
-    @competition.category = @competition.category[2..-1]
+    @competition.category = @competition.category[3..-1]
 
     cloudinary_result = upload_image_to_cloudinary
     @competition.events.first.image_url = cloudinary_result["secure_url"]
