@@ -73,3 +73,18 @@
     text-align: center;
   }
 }
+
+.landing-logo-holder {
+  @media (min-width: 992px) {
+    padding-right: 20px;
+    border-right: 1px solid white;
+  }
+
+  @media (max-width: 992px) {
+    margin-bottom: 20px;
+  }
+}
+
+.landing-brand-text-holder {
+  padding-left: 20px;
+}

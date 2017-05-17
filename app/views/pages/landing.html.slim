@@ -2,11 +2,14 @@
   .overlay
   .content-over-background-image
     h1.hidden-xs
-      | Kellogg | Competitions
+      span.landing-logo-holder
+        = image_tag "http://res.cloudinary.com/case-champ/image/upload/c_scale,q_100,w_200/v1494912416/KelloggSOM_V_white_mxqzwn.png", width: 80
+      span.landing-brand-text-holder
+        | Competitions
 
     h1.visible-xs
-      div
-        | Kellogg
+      div.landing-logo-holder
+        = image_tag "http://res.cloudinary.com/case-champ/image/upload/c_scale,q_100,w_200/v1494912416/KelloggSOM_V_white_mxqzwn.png", width: 100
       div
         | Competitions
 
