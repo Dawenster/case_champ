@@ -239,6 +239,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_12factor
   rails_admin (~> 1.1.1)
+  rest-client
   rollbar
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
