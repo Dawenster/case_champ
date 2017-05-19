@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
   private
 
   def team_size_range
-    if min_team_size > max_team_size
+    if min_team_size.present? && max_team_size.present? && min_team_size > max_team_size
       errors.add(:min_team_size, "should be less than max team size")
     end
   end
