@@ -17,7 +17,7 @@
       <% if landing_page? %>
         <%= yield %>
         <%= render "layouts/landing_footer" %>
-      <% elsif submit_competition_page? %>
+      <% elsif submit_competition_pages? %>
         <%= render "layouts/header" %>
         <%= render "layouts/non_landing_css" %>
         <%= yield %>

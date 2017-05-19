@@ -20,13 +20,16 @@ class CompetitionsController < ApplicationController
     @competition.events.first.image_url = cloudinary_result["secure_url"]
 
     if @competition.save
-      redirect_to root_path, notice: "Competition created successfully"
+      redirect_to confirmation_competitions_path, notice: "Competition created successfully"
     else
       @competition.category = add_leading_spaces(@competition.category)
       alert_message = "Sorry! Unable to submit: #{clean_up_competition_error_messages(@competition.errors)}"
       flash.now["alert"] = alert_message
       render "new"
     end
+  end
+
+  def confirmation
   end
 
   private
