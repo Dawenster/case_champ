@@ -3,5 +3,15 @@
     | Student / Admin Login
   p.login-sub-title
     | Use your school login for access
-  a.btn.btn-primary.btn-lg.login-button
-    | Kellogg Login
+  = form_for @user, url: login_users_path, html: {class: "form-inline m-t-20" } do |f|
+    .form-group
+      .input-group
+        .input-group-addon
+          i.fa.fa-user
+        input.form-control name="username" placeholder="Username" type="text"
+    .form-group
+      .input-group
+        .input-group-addon
+          i.fa.fa-lock
+        input.form-control name="password" placeholder="Password" type="password"
+    = f.submit "Kellogg Login", class: "btn btn-primary btn-lg login-button"

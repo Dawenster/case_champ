@@ -7,4 +7,10 @@ Rails.application.routes.draw do
       get :confirmation
     end
   end
+
+  resources :users, only: [] do
+    collection do
+      post :login
+    end
+  end
 end

@@ -32,6 +32,10 @@ class CompetitionsController < ApplicationController
   def confirmation
   end
 
+  def index
+    @competitions = Competition.all
+  end
+
   private
 
   def competition_params
