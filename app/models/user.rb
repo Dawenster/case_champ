@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  scope :admin, -> { where(admin: true) }
+
   def create_or_update_user
     user_details = Kellogg::User.fetch_user_details(username)
     

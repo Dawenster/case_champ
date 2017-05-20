@@ -1,0 +1,18 @@
+= "Hello #{@first_name},"
+br
+br
+| A new competition form has been filled out.
+br
+ul
+  li = "Competition Title: #{@name}"
+  li = "Organizer Name: #{@organizer_name}"
+  li = "Organizer Email: #{@organizer_email}"
+br
+= link_to "Click here to view the competition submission.", @url
+br
+br
+| Thank you.
+br
+br
+div style="font-style: italic;"
+  | This is an auto generated email.

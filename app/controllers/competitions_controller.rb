@@ -22,6 +22,7 @@ class CompetitionsController < ApplicationController
     @competition.events.first.image_url = cloudinary_result["secure_url"]
 
     if @competition.save
+      send_alerts_to_all_admins
       redirect_to confirmation_competitions_path, notice: "Competition created successfully"
     else
       @competition.category = add_leading_spaces(@competition.category)
@@ -90,6 +91,17 @@ class CompetitionsController < ApplicationController
   rescue => e
     Rollbar.error(e)
     {secure_url: nil}
+  end
+
+  def send_alerts_to_all_admins
+    admins = User.admin
+    admins.each do |admin|
+      begin
+        CompetitionMailer.submission_notification_to_admin(@competition, admin).deliver_now
+      rescue => e
+        Rollbar.error(e, competition_id: @competition.try(:id), admin_id: admin.try(:id))
+      end
+    end
   end
 
 end
