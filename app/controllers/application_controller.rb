@@ -20,4 +20,18 @@ class ApplicationController < ActionController::Base
   def clean_up_competition_error_messages(errors)
     errors.full_messages.to_sentence.gsub("Event", "Competition").gsub("base ", "").downcase
   end
+
+  def redirect_to_login
+    redirect_to root_path, alert: "Please log in" unless user_logged_in?
+  end
+
+  def redirect_away_from_login
+    redirect_to competitions_path
+  end
+
+  def user_logged_in?
+    nu_token = cookies[:nu_token]
+    nu_token.present? && Kellogg::User.validate_nu_token(nu_token)
+  end
+
 end

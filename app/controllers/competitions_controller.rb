@@ -1,5 +1,7 @@
 class CompetitionsController < ApplicationController
 
+  before_action :redirect_to_login, except: [:new, :create, :confirmation], unless: :user_logged_in?
+
   def new
     @competition = Competition.new
     @events = @competition.events.build
