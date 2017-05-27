@@ -1,0 +1,22 @@
+.competition-filter-container
+  .btn-group role="group" aria-label="competition-filter"
+    - Competition::TIMES.each do |time|
+      = link_to time, competitions_path(time: time.parameterize, category: @category_selected.try(:parameterize), sort: @sort_selected.try(:parameterize)), class: "btn btn-lg btn-default btn-primary-with-white-background #{'btn-highlighted' if time == @time_selected}"
+
+  .btn-group
+    button.btn.btn-default.btn-lg.dropdown-toggle.btn-primary-with-white-background type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      = "#{@category_selected} "
+      span.caret
+
+    ul.dropdown-menu
+      - Competition::CATEGORIES_WITH_ALL.each do |category|
+        li = link_to category, competitions_path(time: @time_selected.try(:parameterize), category: category.parameterize, sort: @sort_selected.try(:parameterize))
+
+  .btn-group
+    button.btn.btn-default.btn-lg.dropdown-toggle.btn-primary-with-white-background type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      = "Sort by: #{@sort_selected} "
+      span.caret
+
+    ul.dropdown-menu
+      - Competition::SORT_VALUES.each do |sort|
+        li = link_to "Sort by: #{sort}", competitions_path(time: @time_selected.try(:parameterize), category: @category_selected.try(:parameterize), sort: sort.parameterize)

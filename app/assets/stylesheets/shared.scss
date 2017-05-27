@@ -20,3 +20,22 @@
     background-color: lighten(#54287B, 5%);
   }
 }
+
+.btn-primary-with-white-background {
+  background-color: white;
+
+  &:hover {
+    color: white;
+    background-color: lighten(#54287B, 5%);
+  }
+}
+
+.btn-highlighted {
+  color: white;
+  background-color: lighten(#54287B, 5%);
+}
+
+.page-title {
+  font-weight: bold;
+  color: #4E4E4E;
+}

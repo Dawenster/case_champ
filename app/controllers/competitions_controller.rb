@@ -37,6 +37,7 @@ class CompetitionsController < ApplicationController
 
   def index
     @competitions = Competition.all
+    set_filters_and_sorts
   end
 
   private
@@ -101,6 +102,39 @@ class CompetitionsController < ApplicationController
       rescue => e
         Rollbar.error(e, competition_id: @competition.try(:id), admin_id: admin.try(:id))
       end
+    end
+  end
+
+  def set_filters_and_sorts
+    set_time_filter
+    set_category_filter
+    set_sort
+  end
+
+  def set_time_filter
+    if params[:time].present?
+      time_text = params[:time].gsub("-", " ").try(:humanize)
+      @time_selected = Competition::TIMES.include?(time_text) ? time_text : Competition::DEFAULT_TIME
+    else
+      @time_selected = Competition::DEFAULT_TIME
+    end
+  end
+
+  def set_category_filter
+    if params[:category].present?
+      category_text = params[:category].gsub("-", " ").try(:humanize)
+      @category_selected = Competition::CATEGORIES_WITH_ALL.include?(category_text) ? category_text : Competition::DEFAULT_CATEGORY
+    else
+      @category_selected = Competition::DEFAULT_CATEGORY
+    end
+  end
+
+  def set_sort
+    if params[:sort].present?
+      sort_text = params[:sort].gsub("-", " ").try(:humanize)
+      @sort_selected = Competition::SORT_VALUES.include?(sort_text) ? sort_text : Competition::DEFAULT_SORT_VALUE
+    else
+      @sort_selected = Competition::DEFAULT_SORT_VALUE
     end
   end
 
