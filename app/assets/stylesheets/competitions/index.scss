@@ -33,10 +33,17 @@
     .competition-list-item-container {
       background-color: white;
       border-radius: 10px;
-      margin-bottom: 30px;
       -webkit-box-shadow: 0px 0px 15px 5px rgba(250,230,250,1);
       -moz-box-shadow: 0px 0px 15px 5px rgba(250,230,250,1);
       box-shadow: 0px 0px 15px 5px rgba(250,230,250,1);
+
+      @media (min-width: 992px) {
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 992px) { 
+        margin-bottom: 60px;
+      }
 
       .competition-list-item-banner {
         img {
@@ -73,7 +80,14 @@
     .view-details-button-container {
       position: absolute;
       left: 50%;
-      bottom: 10px;
+
+      @media (min-width: 992px) {
+        bottom: 10px;
+      }
+
+      @media (max-width: 992px) { 
+        bottom: 40px;
+      }
 
       button {
         position: relative;
