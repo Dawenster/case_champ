@@ -36,7 +36,11 @@ class CompetitionsController < ApplicationController
 
   def index
     @events = Event.all
-    set_filters_and_sorts
+    if params[:search].present?
+      set_search_filter
+    else
+      set_filters_and_sorts
+    end
   end
 
   private
@@ -134,7 +138,7 @@ class CompetitionsController < ApplicationController
     else
       @category_selected = Competition::DEFAULT_CATEGORY
     end
-    
+
     @events = @events.joins(:competition).where("competitions.category = ?", @category_selected) unless @category_selected == Competition::DEFAULT_CATEGORY
   end
 
@@ -154,6 +158,16 @@ class CompetitionsController < ApplicationController
     else
       @events = @events.sort_by_date
     end
+  end
+
+  def set_search_filter
+    search_term = "%#{params[:search].strip.downcase}%"
+    @events = @events.joins(:competition).where(
+      "LOWER(competitions.name) like '#{search_term}' OR " \
+      "LOWER(competitions.category) like '#{search_term}' OR " \
+      "LOWER(events.name) like '#{search_term}' OR " \
+      "LOWER(events.description) like '#{search_term}'"
+    )
   end
 
 end

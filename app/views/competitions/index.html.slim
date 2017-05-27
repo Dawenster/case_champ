@@ -7,11 +7,18 @@
       h2.page-title.visible-xs
         | Explore Competitions
 
-      .pull-right.hidden-xs
-        = render "filters"
+      - if params[:search].present?
+        .search-results-text.pull-right
+          = "Search results for: #{params[:search]}"
+          |  | 
+          span
+            = link_to "clear", competitions_path
+      - else
+        .pull-right.hidden-xs
+          = render "filters"
 
-      .visible-xs
-        = render "filters"
+        .visible-xs
+          = render "filters"
 
   .competition-list-container
     .row.table-row

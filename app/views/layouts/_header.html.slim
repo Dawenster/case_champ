@@ -11,7 +11,7 @@ nav.navbar
               .col-xs-6.hidden-xs
                 .image-holder
                   = image_tag "http://res.cloudinary.com/case-champ/image/upload/c_scale,q_100,w_200/v1494912416/KelloggSOM_V_white_mxqzwn.png", width: 80
-              .col-xs-6.text-to-center-vertically
+              .col-xs-6.text-to-center-vertically.brand-text
                 | Competitions
         /! Collect the nav links, forms, and other content for toggling
         #main-navbar-collapse.collapse.navbar-collapse
@@ -19,7 +19,14 @@ nav.navbar
             - if submit_competition_pages?
               li = link_to "Go back", root_path
             - else
-              li = link_to "Explore competitions", ""
-              li = link_to "My profile", ""
+              li = link_to "Explore competitions", "", class: "header-to-hide-when-searching"
+              li = link_to "My profile", "", class: "header-to-hide-when-searching"
               li
-                i.fa.fa-search
+                form.form-inline.hide.search-input-form action="#{competitions_path(time: @time_selected.try(:parameterize), category: @category_selected.try(:parameterize), sort: @sort_selected.try(:parameterize))}"
+                  .form-group
+                    input.form-control.search-input placeholder="Search competitions" name="search"
+                  button.btn.btn-default type="submit"
+                    | Go
+              li
+                a
+                  i.fa.fa-search.search-icon
