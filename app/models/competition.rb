@@ -10,34 +10,33 @@ class Competition < ActiveRecord::Base
   accepts_nested_attributes_for :events, allow_destroy: true
 
   TIMES = [
-    "Upcoming",
-    "Past"
+    UPCOMING = "Upcoming",
+    PAST = "Past"
   ]
-  DEFAULT_TIME = TIMES.first
+  DEFAULT_TIME = UPCOMING
 
   ALL_CATEGORIES = "All Categories"
-
   CATEGORIES = [
-    "Analytics", 
-    "Business", 
-    "Consulting", 
-    "Design", 
-    "Entrepreneurship", 
-    "Finance", 
-    "Health Care", 
-    "Marketing", 
-    "Operations", 
-    "Social Impact", 
-    "Technology"
+    ANALYTICS = "Analytics", 
+    BUSINESS = "Business", 
+    CONSULTING = "Consulting", 
+    DESIGN = "Design", 
+    ENTREPRENEURSHIP = "Entrepreneurship", 
+    FINANCE = "Finance", 
+    HEALTH_CARE = "Health Care", 
+    MARKETING = "Marketing", 
+    OPERATIONS = "Operations", 
+    SOCIAL_IMPACT = "Social Impact", 
+    TECHNOLOGY = "Technology"
   ]
   CATEGORIES_WITH_ALL = CATEGORIES.unshift(ALL_CATEGORIES)
   DEFAULT_CATEGORY = ALL_CATEGORIES
 
 
   SORT_VALUES = [
-    "Date",
-    "Prize",
-    "Interest"
+    DATE = "Date",
+    PRIZE = "Prize",
+    INTEREST = "Interest"
   ]
   DEFAULT_SORT_VALUE = SORT_VALUES.first
 

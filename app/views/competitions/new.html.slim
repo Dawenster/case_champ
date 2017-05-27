@@ -45,7 +45,7 @@
                     .label-main-text
                       | Upload cover photo*
                     .label-sub-text
-                      | Ratio: 5:8
+                      = "Ratio: #{Event::DEFAULT_IMAGE_ASPECT_RATIO}"
 
 
               = ef.file_field :image_url, id: "image-fileupload", class: "hide"

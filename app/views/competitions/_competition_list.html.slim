@@ -1,0 +1,6 @@
+.col-xs-12.col-sm-6.col-md-4
+  .competition-list-item-container
+    .competition-list-item-banner
+      = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+    .competition-list-item-content
+      = competition.name

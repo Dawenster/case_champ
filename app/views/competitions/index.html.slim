@@ -1,12 +1,19 @@
 .competition-index-page
-  h2.page-title.pull-left.hidden-xs
-    | Explore Competitions
+  .row
+    .col-xs-12
+      h2.page-title.pull-left.hidden-xs
+        | Explore Competitions
 
-  h2.page-title.visible-xs
-    | Explore Competitions
+      h2.page-title.visible-xs
+        | Explore Competitions
 
-  .pull-right.hidden-xs
-    = render "filters"
+      .pull-right.hidden-xs
+        = render "filters"
 
-  .visible-xs
-    = render "filters"
+      .visible-xs
+        = render "filters"
+
+  .competition-list-container
+    .row
+      - @events.each do |event|
+        = render "competition_list", competition: event.competition, event: event

@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  DEFAULT_IMAGE_ASPECT_RATIO = "8:5"
+
   attr_accessible :name, :sponsor, :description, :city, :state_and_country, :min_team_size, :max_team_size, 
                   :num_kellogg_teams_allowed, :logistics, :application, :application_url, :contact_name,
                   :position_and_organization, :contact_email, :contact_phone, :competition_id, :image_url
@@ -28,7 +30,21 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :prizes, allow_destroy: true, :reject_if => proc { |p| p['description'].blank? }
   accepts_nested_attributes_for :milestones, allow_destroy: true, :reject_if => proc { |p| p['deadline_at'].blank? && p['description'].blank? }
 
+  scope :first_prize, -> {
+    joins(:prizes)
+    .where("prizes.rank = (SELECT MAX(prizes.rank) FROM prizes WHERE prizes.event_id = events.id)")
+  }
+  scope :first_milestone, -> {
+    joins(:milestones)
+    .where("milestones.deadline_at = (SELECT MIN(milestones.deadline_at) FROM milestones WHERE milestones.event_id = events.id)")
+  }
+  
   scope :published, -> { where("published is true") }
+  scope :upcoming, -> { first_milestone.where("milestones.deadline_at >= ?", Time.current) }
+  scope :past, -> { first_milestone.where("milestones.deadline_at < ?", Time.current) }
+  scope :sort_by_date, -> { first_milestone.order("milestones.deadline_at") }
+  scope :sort_by_prize, -> { first_prize.order("prizes.description") }
+  scope :sort_by_interest, -> {  }
 
   private
 

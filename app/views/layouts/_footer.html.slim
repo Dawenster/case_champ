@@ -1,15 +1,14 @@
 .footer
-  .container
-    .row
-      .col-xs-12.col-md-10.col-md-offset-1
-        - unless submit_competition_pages?
-          ul.list-inline.pull-left
-            li = link_to "Explore competitions", ""
-            li = link_to "My competitions", ""
-            li = link_to "Submit a competition", new_competition_path
+  .row
+    .col-xs-12.col-md-10.col-md-offset-1
+      - unless submit_competition_pages?
+        ul.list-inline.pull-left
+          li = link_to "Explore competitions", ""
+          li = link_to "My competitions", ""
+          li = link_to "Submit a competition", new_competition_path
 
-          .pull-right.hidden-xs.hidden-sm
-            = "Made with <3 by KETI"
+        .pull-right.hidden-xs.hidden-sm
+          = "Made with <3 by KETI"
 
-          .visible-xs.visible-sm
-            = "Made with <3 by KETI"
+        .visible-xs.visible-sm
+          = "Made with <3 by KETI"
