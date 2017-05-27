@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
 
   def user_logged_in?
     nu_token = cookies[:nu_token]
-    nu_token.present? && Kellogg::User.validate_nu_token(nu_token)
+    # Simply checking if cookie is there instead of making too many hits to Kellogg's servers
+    nu_token.present?
   end
 
 end
