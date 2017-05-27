@@ -27,7 +27,7 @@
   }
 
   .competition-list-container {
-    margin-top: 25px;
+    margin-top: 35px;
     position: relative;
 
     .competition-list-item-container {
@@ -38,7 +38,7 @@
       box-shadow: 0px 0px 15px 5px rgba(250,230,250,1);
 
       @media (min-width: 992px) {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
       }
 
       @media (max-width: 992px) { 
@@ -119,7 +119,7 @@
       left: 50%;
 
       @media (min-width: 992px) {
-        bottom: 10px;
+        bottom: 30px;
       }
 
       @media (max-width: 992px) { 
