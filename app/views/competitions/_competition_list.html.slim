@@ -2,6 +2,9 @@
   a.competition-list-item-container-link href="#{competition_path(competition)}"
     .competition-list-item-container
       .competition-list-item-banner
+        .ribbon-text-container
+          .ribbon-text
+            = competition.category
         = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
       .competition-list-item-content
         h4
