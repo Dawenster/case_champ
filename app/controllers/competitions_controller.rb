@@ -18,8 +18,7 @@ class CompetitionsController < ApplicationController
 
     @competition.category = @competition.category[3..-1]
 
-    cloudinary_result = upload_image_to_cloudinary
-    @competition.events.first.image_url = cloudinary_result["secure_url"]
+    @competition.events.first.image_url = upload_image_to_cloudinary
 
     if @competition.save
       send_alerts_to_all_admins
@@ -36,7 +35,7 @@ class CompetitionsController < ApplicationController
   end
 
   def index
-    @competitions = Competition.all
+    @events = Event.all
     set_filters_and_sorts
   end
 
@@ -88,10 +87,11 @@ class CompetitionsController < ApplicationController
 
   def upload_image_to_cloudinary
     raw_image = params[:competition]["events_attributes"]["0"]["image_url"]
-    Cloudinary::Uploader.upload(raw_image)
+    cloudinary_object = Cloudinary::Uploader.upload(raw_image)
+    "#{cloudinary_object['public_id']}.#{cloudinary_object['format']}"
   rescue => e
     Rollbar.error(e)
-    {secure_url: nil}
+    nil
   end
 
   def send_alerts_to_all_admins
@@ -118,6 +118,13 @@ class CompetitionsController < ApplicationController
     else
       @time_selected = Competition::DEFAULT_TIME
     end
+
+    case @time_selected
+    when Competition::PAST
+      @events = @events.past
+    else
+      @events = @events.upcoming
+    end
   end
 
   def set_category_filter
@@ -127,6 +134,8 @@ class CompetitionsController < ApplicationController
     else
       @category_selected = Competition::DEFAULT_CATEGORY
     end
+
+    @events = @events.joins(:competition).where(competition: @category_selected) unless @category_selected == Competition::DEFAULT_CATEGORY
   end
 
   def set_sort
@@ -135,6 +144,15 @@ class CompetitionsController < ApplicationController
       @sort_selected = Competition::SORT_VALUES.include?(sort_text) ? sort_text : Competition::DEFAULT_SORT_VALUE
     else
       @sort_selected = Competition::DEFAULT_SORT_VALUE
+    end
+
+    case @sort_selected
+    when Competition::PRIZE
+      @events = @events.sort_by_prize      
+    when Competition::INTEREST
+      @events = @events.sort_by_interest      
+    else
+      @events = @events.sort_by_date
     end
   end
 
