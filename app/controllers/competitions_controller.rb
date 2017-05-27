@@ -134,8 +134,8 @@ class CompetitionsController < ApplicationController
     else
       @category_selected = Competition::DEFAULT_CATEGORY
     end
-
-    @events = @events.joins(:competition).where(competition: @category_selected) unless @category_selected == Competition::DEFAULT_CATEGORY
+    
+    @events = @events.joins(:competition).where("competitions.category = ?", @category_selected) unless @category_selected == Competition::DEFAULT_CATEGORY
   end
 
   def set_sort
