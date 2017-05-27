@@ -46,6 +46,14 @@ class Event < ActiveRecord::Base
   scope :sort_by_prize, -> { first_prize.order("prizes.description") }
   scope :sort_by_interest, -> {  }
 
+  def first_milestone
+    milestones.order(:deadline_at).first
+  end
+
+  def city_and_state_and_country
+    "#{city}, #{state_and_country}"
+  end
+
   private
 
   def team_size_range

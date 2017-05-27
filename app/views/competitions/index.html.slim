@@ -14,6 +14,10 @@
         = render "filters"
 
   .competition-list-container
-    .row
-      - @events.each do |event|
+    .row.table-row
+      - @events.each_with_index do |event, i|
         = render "competition_list", competition: event.competition, event: event
+        - if i % 3 == 2
+          .clearfix.visible-md.visible-lg
+        - if i % 2 == 1
+          .clearfix.visible-sm
