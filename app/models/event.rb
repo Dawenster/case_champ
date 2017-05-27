@@ -28,6 +28,8 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :prizes, allow_destroy: true, :reject_if => proc { |p| p['description'].blank? }
   accepts_nested_attributes_for :milestones, allow_destroy: true, :reject_if => proc { |p| p['deadline_at'].blank? && p['description'].blank? }
 
+  scope :published, -> { where("published is true") }
+
   private
 
   def team_size_range
