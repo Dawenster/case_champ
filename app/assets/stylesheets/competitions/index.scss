@@ -1,4 +1,9 @@
 .competition-index-page {
+  .competition-list-item-container-link {
+    color: black;
+    text-decoration: none;
+  }
+
   .competition-filter-container {
     .table-row {
         display: table;
@@ -23,6 +28,7 @@
 
   .competition-list-container {
     margin-top: 25px;
+    position: relative;
 
     .competition-list-item-container {
       background-color: white;
@@ -41,7 +47,7 @@
       }
 
       .competition-list-item-content {
-        padding: 20px 40px;
+        padding: 20px 40px 40px 40px;
 
         h4 {
           font-size: 24px;
@@ -63,5 +69,18 @@
         }
       }
     }
+
+    .view-details-button-container {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+
+      button {
+        position: relative;
+        left: -50%;
+        padding: 10px 30px;
+      }
+    }
   }
+
 }

@@ -1,30 +1,35 @@
 .col-xs-12.col-sm-6.col-md-4
-  .competition-list-item-container
-    .competition-list-item-banner
-      = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
-    .competition-list-item-content
-      h4
-        = competition.name
-      .icon-row
-        i.fa.fa-trophy.pull-left.icon
-        .competition-list-item-content-details
-          span
-            = truncate event.prizes.first.description, length: 35, omission: '...'
+  a.competition-list-item-container-link href="#{competition_path(competition)}"
+    .competition-list-item-container
+      .competition-list-item-banner
+        = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+      .competition-list-item-content
+        h4
+          = competition.name
+        .icon-row
+          i.fa.fa-trophy.pull-left.icon
+          .competition-list-item-content-details
+            span
+              / = truncate event.prizes.first.description, length: 35, omission: '...'
+              = event.prizes.first.description
 
-      .icon-row
-        i.fa.fa-user.pull-left.icon
-        .competition-list-item-content-details
-          span
-            = "#{3} interested"
+        .icon-row
+          i.fa.fa-user.pull-left.icon
+          .competition-list-item-content-details
+            span
+              = "#{3} interested"
 
-      .icon-row
-        i.fa.fa-calendar.pull-left.icon
-        .competition-list-item-content-details
-          span
-            = l(event.first_milestone.deadline_at, format: :month_and_year)
+        .icon-row
+          i.fa.fa-calendar.pull-left.icon
+          .competition-list-item-content-details
+            span
+              = l(event.first_milestone.deadline_at, format: :month_and_year)
 
-      .icon-row
-        i.fa.fa-globe.pull-left.icon
-        .competition-list-item-content-details
-          span
-            = event.city_and_state_and_country
+        .icon-row
+          i.fa.fa-globe.pull-left.icon
+          .competition-list-item-content-details
+            span
+              = event.city_and_state_and_country
+      .view-details-button-container
+        button.btn.btn-primary.btn-lg
+          | View details
