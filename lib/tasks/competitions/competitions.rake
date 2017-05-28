@@ -9,7 +9,7 @@ namespace :competitions do
 
         event_name                = row[1] || "Dummy data"
         
-        source_url                = row[2] || "https://s-media-cache-ak0.pinimg.com/originals/e1/70/e2/e170e2ff9e3b0cbddbb5ed9c4728422e.jpg"
+        source_url                = row[2] || "https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Kellogg_School_of_Management.svg/1280px-Kellogg_School_of_Management.svg.png"
         cloudingary_object        = Cloudinary::Uploader.upload(source_url)
         image_url                 = "#{cloudingary_object['public_id']}.#{cloudingary_object['format']}"
         sponsor                   = row[3] || "Dummy data"
