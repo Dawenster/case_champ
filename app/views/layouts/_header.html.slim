@@ -6,7 +6,8 @@ nav.navbar
         .navbar-header
           button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-navbar-collapse" data-toggle="collapse" type="button" 
             i.fa.fa-bars
-          a.navbar-brand href="#{root_path}"
+          - brand_link = user_logged_in? ? competitions_path : root_path
+          a.navbar-brand href="#{brand_link}"
             .row
               .col-xs-6.hidden-xs
                 .image-holder
@@ -19,7 +20,7 @@ nav.navbar
             - if submit_competition_pages?
               li = link_to "Go back", root_path
             - else
-              li = link_to "Explore competitions", "", class: "header-to-hide-when-searching"
+              li = link_to "Explore competitions", competitions_path, class: "header-to-hide-when-searching"
               li = link_to "My profile", "", class: "header-to-hide-when-searching"
               li
                 form.form-inline.hide.search-input-form action="#{competitions_path(time: @time_selected.try(:parameterize), category: @category_selected.try(:parameterize), sort: @sort_selected.try(:parameterize))}"

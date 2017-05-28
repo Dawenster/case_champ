@@ -6,4 +6,6 @@ class Milestone < ActiveRecord::Base
 
   belongs_to :event
 
+  scope :ordered, -> { order(:deadline_at) }
+
 end

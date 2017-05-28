@@ -40,11 +40,15 @@ class Competition < ActiveRecord::Base
   ]
   DEFAULT_SORT_VALUE = SORT_VALUES.first
 
+  TAB_DETAILS           = "details"
+  TAB_PARTICIPANTS      = "participants"
+  TAB_PAST_COMPETITIONS = "past-competitions"
+  TAB_MEDIA             = "media"
   TAB_ITEMS = {
-    details: "details",
-    participants: "participants",
-    past_competitions: "past-competitions",
-    media: "media",
+    details:           TAB_DETAILS,
+    participants:      TAB_PARTICIPANTS,
+    past_competitions: TAB_PAST_COMPETITIONS,
+    media:             TAB_MEDIA
   }
   DEFAULT_TAB_VALUE = TAB_ITEMS[:details]
 
