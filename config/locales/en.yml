@@ -24,3 +24,4 @@ en:
   time:
     formats:
       month_and_year: "%B %Y"
+      full: "%B %d, %Y"

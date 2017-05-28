@@ -33,5 +33,23 @@
         width: 200px;
       }
     }
+
+  }
+  .right-details-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+
+    .details-row {
+      margin: 30px 0px;
+    }
+
+    .left-label {
+      font-size: 22px;
+    }
+
+    .right-content {
+      margin-top: 5px;
+    }
   }
 }

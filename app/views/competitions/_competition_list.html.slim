@@ -11,28 +11,32 @@
           = competition.name
         .icon-row
           i.fa.fa-trophy.pull-left.icon
-          .competition-list-item-content-details
+          .icon-content-details
             span
-              / = truncate event.prizes.first.description, length: 35, omission: '...'
-              = event.prizes.first.description
+              b
+                / = truncate event.prizes.first.description, length: 35, omission: '...'
+                = event.prizes.first.description
 
         .icon-row
           i.fa.fa-user.pull-left.icon
-          .competition-list-item-content-details
+          .icon-content-details
             span
-              = "#{3} interested"
+              b
+                = "#{3} interested"
 
         .icon-row
           i.fa.fa-calendar.pull-left.icon
-          .competition-list-item-content-details
+          .icon-content-details
             span
-              = l(event.first_milestone.deadline_at, format: :month_and_year)
+              b
+                = l(event.first_milestone.deadline_at, format: :month_and_year)
 
         .icon-row
           i.fa.fa-globe.pull-left.icon
-          .competition-list-item-content-details
+          .icon-content-details
             span
-              = event.city_and_state_and_country
+              b
+                = event.city_and_state_and_country
       .view-details-button-container
         button.btn.btn-primary.btn-lg
           | View details

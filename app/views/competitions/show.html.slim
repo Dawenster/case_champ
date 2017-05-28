@@ -19,3 +19,128 @@
             = link_to "I'm interested", "", class: "btn btn-default btn-lg"
           div
             = link_to "Apply now", "#{URI::HTTP.build(host: @event.application_url).to_s}", class: "btn btn-primary btn-lg", target: "_blank"
+
+    .col-xs-12.col-md-8
+      .right-details-container
+        .row
+          .col-xs-12
+            h2.page-title
+              = "#{@competition.name} (#{@event.name})"
+            h3
+              = "Sponsored by #{@event.sponsor}"
+
+        .row.details-row
+          .col-xs-12.col-md-3
+            .left-label
+              | Brief
+          .col-xs-12.col-md-9
+            .right-content
+              = @event.description
+
+        .row.details-row
+          .col-xs-12.col-md-3
+            .left-label
+              | Details
+          .col-xs-12.col-md-9
+            .right-content
+              .icon-row
+                i.fa.fa-globe.pull-left.icon
+                .icon-content-details
+                  span
+                    b
+                      | Location: 
+                  span
+                    = @event.city_and_state_and_country
+
+              .icon-row
+                i.fa.fa-trophy.pull-left.icon
+                .icon-content-details
+                  - @event.prizes.each do |prize|
+                    div
+                      span
+                        b
+                          = "#{prize.rank.ordinalize} place: "
+                      span
+                        = prize.description
+
+        .row.details-row
+          .col-xs-12.col-md-3
+            .left-label
+              | Dates
+          .col-xs-12.col-md-9
+            .right-content
+              - @event.milestones.each do |milestone|
+                div
+                  span
+                    b
+                      = "#{l(milestone.deadline_at, format: :full)}"
+                  span
+                    = " - #{milestone.description}"
+
+        - if @event.application.present?
+          .row.details-row
+            .col-xs-12.col-md-3
+              .left-label
+                | Application
+            .col-xs-12.col-md-9
+              .right-content
+                = @event.application
+
+        - if @event.logistics.present?
+          .row.details-row
+            .col-xs-12.col-md-3
+              .left-label
+                | Logistics
+            .col-xs-12.col-md-9
+              .right-content
+                = @event.logistics
+
+        .row.details-row
+          .col-xs-12.col-md-3
+            .left-label
+              | Teams
+          .col-xs-12.col-md-9
+            .right-content
+              div
+                span
+                  b
+                    | Minimum Team Size: 
+                span
+                  = @event.min_team_size || "N/A"
+
+              div
+                span
+                  b
+                    | Maximum Team Size: 
+                span
+                  = @event.max_team_size || "N/A"
+
+              div
+                span
+                  b
+                    | Total # of Kellogg Teams Allowed: 
+                span
+                  = @event.num_kellogg_teams_allowed || "N/A"
+
+        .row.details-row
+          .col-xs-12.col-md-3
+            .left-label
+              | Contact
+          .col-xs-12.col-md-9
+            .right-content
+              - if @event.contact_name.present?
+                div
+                  = @event.contact_name
+              - if @event.position_and_organization.present?
+                div
+                  = @event.position_and_organization
+              - if @event.contact_email.present?
+                div
+                  = @event.contact_email
+              - if @event.contact_phone.present?
+                div
+                  = @event.contact_phone
+
+
+
+
