@@ -1,0 +1,21 @@
+.competition-show-page
+  .row
+    .col-xs-12.col-md-4
+      .left-nav
+        .event-image-container
+          .ribbon-text-container
+            .ribbon-text
+              = @competition.category
+          = cl_image_tag @event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+
+        .left-nav-tabs
+          - Competition::TAB_ITEMS.each do |tab, parameterized_tab|
+            - active = params[:tab].present? ? parameterized_tab == params[:tab] : parameterized_tab == Competition::DEFAULT_TAB_VALUE
+            .left-nav-tab-item class="#{'active' if active}"
+              h3.page-title
+                = link_to tab.to_s.split("_").map(&:capitalize).join(' '), competition_path(@competition, tab: parameterized_tab)
+
+          div
+            = link_to "I'm interested", "", class: "btn btn-default btn-lg"
+          div
+            = link_to "Apply now", "#{URI::HTTP.build(host: @event.application_url).to_s}", class: "btn btn-primary btn-lg", target: "_blank"

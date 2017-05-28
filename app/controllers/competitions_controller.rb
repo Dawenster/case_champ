@@ -43,6 +43,11 @@ class CompetitionsController < ApplicationController
     end
   end
 
+  def show
+    @competition = Competition.find(params[:id])
+    @event = Event.find_by_id(params[:event_id]) || @competition.events.last
+  end
+
   private
 
   def competition_params

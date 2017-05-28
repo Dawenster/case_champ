@@ -33,12 +33,19 @@ class Competition < ActiveRecord::Base
   CATEGORIES_WITH_ALL = CATEGORIES.unshift(ALL_CATEGORIES)
   DEFAULT_CATEGORY = ALL_CATEGORIES
 
-
   SORT_VALUES = [
     DATE     = "Date",
     PRIZE    = "Prize",
     INTEREST = "Interest"
   ]
   DEFAULT_SORT_VALUE = SORT_VALUES.first
+
+  TAB_ITEMS = {
+    details: "details",
+    participants: "participants",
+    past_competitions: "past-competitions",
+    media: "media",
+  }
+  DEFAULT_TAB_VALUE = TAB_ITEMS[:details]
 
 end

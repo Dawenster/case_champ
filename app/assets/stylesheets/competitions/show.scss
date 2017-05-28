@@ -1,0 +1,37 @@
+.competition-show-page {
+  .left-nav {
+    .event-image-container {
+      img {
+        width: 100%;
+        border-radius: 10px;
+      }
+    }
+
+    .left-nav-tabs {
+      text-align: right;
+      margin-top: 20px;
+
+      .left-nav-tab-item {
+        padding-right: 20px;
+
+        h3 {
+          margin: 0px;
+          padding: 10px;
+          font-weight: bold;
+        }
+
+        &.active {
+          padding-right: 10px;
+          border-right: 10px solid #54287B;
+        }
+      }
+
+      .btn {
+        text-transform: uppercase;
+        margin-top: 10px;
+        margin-right: 30px;
+        width: 200px;
+      }
+    }
+  }
+}

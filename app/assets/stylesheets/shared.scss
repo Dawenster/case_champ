@@ -39,4 +39,43 @@
 .page-title {
   font-weight: bold;
   color: #4E4E4E;
+
+  a {
+    font-weight: bold;
+    color: #4E4E4E;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.ribbon-text-container {
+  position: absolute;
+  top: 20px;
+}
+
+.ribbon-text {
+  padding: 5px 10px 5px 20px;
+  color: white;
+  background-color: #54287B;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+
+  margin-left: -20px;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0px;
+    top: 100%;
+    border-width: 5px 10px;
+    border-style: solid;
+    border-color: #54287B #54287B transparent transparent;
+  }
 }
