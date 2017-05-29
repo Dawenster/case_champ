@@ -46,7 +46,6 @@ class Event < ActiveRecord::Base
   scope :past, -> { first_milestone.where("milestones.deadline_at < ?", Time.current) }
   scope :sort_by_date, -> { first_milestone.order("milestones.deadline_at") }
   scope :sort_by_prize, -> { first_prize.order("prizes.description") }
-  scope :sort_by_interest, -> {  }
 
   def first_milestone
     milestones.order(:deadline_at).first
@@ -54,6 +53,12 @@ class Event < ActiveRecord::Base
 
   def city_and_state_and_country
     "#{city}, #{state_and_country}"
+  end
+
+  def self.sort_by_interest
+    Event.all.sort_by do |event|
+      event.users.count
+    end.reverse
   end
 
   private

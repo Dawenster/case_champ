@@ -183,7 +183,7 @@ class CompetitionsController < ApplicationController
     when Competition::PRIZE
       @events = @events.sort_by_prize      
     when Competition::INTEREST
-      @events = @events.sort_by_interest      
+      @events = @events.sort_by_interest
     else
       @events = @events.sort_by_date
     end

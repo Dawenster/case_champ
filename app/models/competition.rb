@@ -30,7 +30,7 @@ class Competition < ActiveRecord::Base
     SOCIAL_IMPACT    = "Social Impact", 
     TECHNOLOGY       = "Technology"
   ]
-  CATEGORIES_WITH_ALL = CATEGORIES + [ALL_CATEGORIES]
+  CATEGORIES_WITH_ALL = [ALL_CATEGORIES] + CATEGORIES
   DEFAULT_CATEGORY = ALL_CATEGORIES
 
   SORT_VALUES = [

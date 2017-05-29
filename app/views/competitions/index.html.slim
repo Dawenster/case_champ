@@ -26,10 +26,10 @@
         - @events.each_with_index do |event, i|
           .col-xs-12.col-sm-6.col-md-4
             = render "competition_list", competition: event.competition, event: event
-            - if i % 3 == 2
-              .clearfix.visible-md.visible-lg
-            - if i % 2 == 1
-              .clearfix.visible-sm
+          - if i % 3 == 2
+            .clearfix.visible-md.visible-lg
+          - if i % 2 == 1
+            .clearfix.visible-sm
       - else
         .col-xs-12
           h4
