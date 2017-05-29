@@ -1,0 +1,17 @@
+.past-competitions-container
+  h2.page-title
+    | Past competitions like this one
+
+  - past_events = @event.competition.events.where.not(id: @event.id)
+  - if past_events.any?
+    .competition-list-container
+      .row.table-row
+        - @event.competition.events.where.not(id: @event.id).each_with_index do |event, i|
+          .col-xs-12.col-sm-6
+            = render "competition_list", competition: event.competition, event: event
+            - if i % 3 == 2
+              .clearfix.visible-md.visible-lg
+            - if i % 2 == 1
+              .clearfix.visible-sm
+  - else
+    | No past competitions

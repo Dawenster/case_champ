@@ -1,42 +1,41 @@
-.col-xs-12.col-sm-6.col-md-4
-  a.competition-list-item-container-link href="#{competition_path(competition, event_id: event.id)}"
-    .competition-list-item-container
-      .competition-list-item-banner
-        .ribbon-text-container
-          .ribbon-text
-            = competition.category
-        = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
-      .competition-list-item-content
-        h4
-          = competition.name
-        .icon-row
-          i.fa.fa-trophy.pull-left.icon
-          .icon-content-details
-            span
-              b
-                / = truncate event.prizes.first.description, length: 35, omission: '...'
-                = event.prizes.first.description
+a.competition-list-item-container-link href="#{competition_path(competition, event_id: event.id)}"
+  .competition-list-item-container
+    .competition-list-item-banner
+      .ribbon-text-container
+        .ribbon-text
+          = competition.category
+      = cl_image_tag event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+    .competition-list-item-content
+      h4
+        = "#{competition.name} (#{event.name})"
+      .icon-row
+        i.fa.fa-trophy.pull-left.icon
+        .icon-content-details
+          span
+            b
+              / = truncate event.prizes.first.description, length: 35, omission: '...'
+              = event.prizes.first.description
 
-        .icon-row
-          i.fa.fa-user.pull-left.icon
-          .icon-content-details
-            span
-              b
-                = "#{3} interested"
+      .icon-row
+        i.fa.fa-user.pull-left.icon
+        .icon-content-details
+          span
+            b
+              = "#{3} interested"
 
-        .icon-row
-          i.fa.fa-calendar.pull-left.icon
-          .icon-content-details
-            span
-              b
-                = l(event.first_milestone.deadline_at, format: :month_and_year)
+      .icon-row
+        i.fa.fa-calendar.pull-left.icon
+        .icon-content-details
+          span
+            b
+              = l(event.first_milestone.deadline_at, format: :month_and_year)
 
-        .icon-row
-          i.fa.fa-globe.pull-left.icon
-          .icon-content-details
-            span
-              b
-                = event.city_and_state_and_country
-      .view-details-button-container
-        button.btn.btn-primary.btn-lg
-          | View details
+      .icon-row
+        i.fa.fa-globe.pull-left.icon
+        .icon-content-details
+          span
+            b
+              = event.city_and_state_and_country
+    .view-details-button-container
+      button.btn.btn-primary.btn-lg
+        | View details
