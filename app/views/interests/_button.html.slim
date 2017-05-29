@@ -1,0 +1,10 @@
+- button_type = current_user.interested_in?(@event) ? Interest::DESTROY_BUTTON : Interest::CREATE_BUTTON
+- right_margin_amount = right_margin ? "30px" : "0px"
+
+- if button_type == Interest::CREATE_BUTTON
+  = form_for Interest.new do |f|
+    = f.hidden_field :event_id, value: @event.id
+    = f.submit "I'm interested", class: "btn btn-default btn-lg cta-btn interest-btn", style: "margin-right: #{right_margin_amount};"
+- else
+  - interest = current_user.interest_for(event)
+  = link_to "I'm interested", interest_path(interest), method: :delete, class: "btn btn-default btn-lg cta-btn interest-btn already-interested", style: "margin-right: #{right_margin_amount};"

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       if user.nil? || user.requires_update?
         user = user.create_or_update_user
       end
+      user.latest_token = nu_token
 
       begin
         user.save!

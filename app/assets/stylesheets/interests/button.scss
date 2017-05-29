@@ -1,0 +1,9 @@
+.already-interested {
+  color: white;
+  background-color: #77B03F;
+
+  &:hover {
+    color: white;
+    background-color: lighten(#77B03F, 5%);
+  }
+}

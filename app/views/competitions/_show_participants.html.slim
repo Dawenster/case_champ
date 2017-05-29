@@ -1,0 +1,33 @@
+.participants-container
+  - interested_users = @event.users
+  - if interested_users.any?
+    h2.page-title
+      - if interested_users.count == 1
+        = "#{interested_users.count} colleague is interested in this competition!"
+      - else
+        = "#{interested_users.count} colleagues are interested in this competition!"
+
+    = render "interests/button", event: @event, right_margin: false
+
+    hr
+
+    .row
+      - interested_users.each do |user|
+        .col-xs-4.col-sm-3.col-md-2
+          .interested-user-container
+            = cl_image_tag user.image_url, width: 70, height: 70, crop: :thumb, gravity: :face, radius: :max
+            .user-name
+              = user.name
+
+  - else
+    h2.page-title
+      | No one has indicated interest yet
+
+    = render "interests/button", event: @event, right_margin: false
+
+    .prompt-user-to-mark-interested
+      i.fa.fa-hand-o-up
+
+      .row
+        .col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+          | Be the first to indicate interest in this competition!

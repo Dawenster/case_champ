@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :landing_page?, :submit_competition_pages?, :add_leading_spaces, :user_logged_in?
+  helper_method :landing_page?, :submit_competition_pages?, :add_leading_spaces, :user_logged_in?, :current_user
 
   def landing_page?
     params[:controller] == "pages" && params[:action] == "landing"
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     nu_token = cookies[:nu_token]
     # Simply checking if cookie is there instead of making too many hits to Kellogg's servers
     nu_token.present?
+  end
+
+  def current_user
+    @current_user ||= User.find_by_latest_token(cookies[:nu_token])
   end
 
 end

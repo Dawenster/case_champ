@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       post :login
     end
   end
+
+  resources :interests, only: [:create, :destroy]
 end

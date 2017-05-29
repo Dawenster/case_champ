@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :interests
+  has_many :events, through: :interests
+
   scope :admin, -> { where(admin: true) }
 
   def create_or_update_user
@@ -10,7 +13,7 @@ class User < ActiveRecord::Base
     self.email      = user_details["EMail"]
     self.program    = user_details["Prog"]
     self.majors     = user_details["Majors"]
-    self.image_url  = user_details["StudentPicURL"]
+    self.image_url  = user_details["StudentPicURL"].blank? ? default_image_url : user_details["StudentPicURL"]
     self.class_year = user_details["Class"].to_i
 
     self
@@ -18,6 +21,28 @@ class User < ActiveRecord::Base
 
   def requires_update?
     email.blank?
+  end
+
+  def interested_in?(event)
+    event.users.include?(self)
+  end
+
+  def interest_for(event)
+    event.interests.where(user_id: self.id).first
+  end
+
+  def name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name}"
+    else
+      username
+    end
+  end
+
+  private
+
+  def default_image_url
+    "default-user_lwemhn.png"
   end
 
 end
