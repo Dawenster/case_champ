@@ -8,9 +8,7 @@ class UsersController < ApplicationController
 
     if Kellogg::User.validate_nu_token(nu_token)
       user = User.find_or_initialize_by(username: username)
-      if user.nil? || user.requires_update?
-        user = user.create_or_update_user
-      end
+      user = user.update_details
       user.latest_token = nu_token
 
       begin
@@ -29,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    
   end
 
 end

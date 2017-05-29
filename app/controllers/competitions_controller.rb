@@ -121,7 +121,7 @@ class CompetitionsController < ApplicationController
   def upload_image_to_cloudinary
     raw_image = params[:competition]["events_attributes"]["0"]["image_url"]
     cloudinary_object = Cloudinary::Uploader.upload(raw_image)
-    "#{cloudinary_object['public_id']}.#{cloudinary_object['format']}"
+    cloudinary_object['public_id']
   rescue => e
     Rollbar.error(e)
     nil

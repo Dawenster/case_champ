@@ -16,7 +16,7 @@
         .col-xs-4.col-sm-3.col-md-2
           .interested-user-container
             a href="#{user_path(user)}"
-              = cl_image_tag user.image_url, width: 70, height: 70, crop: :thumb, gravity: :face, radius: :max
+              = cl_image_tag user.image_url, width: 70, height: 70, crop: :thumb, gravity: :face, radius: :max, format: :png
               .user-name
                 = user.name
 
