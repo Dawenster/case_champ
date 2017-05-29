@@ -13,7 +13,7 @@
             - active = params[:tab].present? ? parameterized_tab == params[:tab] : parameterized_tab == Competition::DEFAULT_TAB_VALUE
             .left-nav-tab-item class="#{'active' if active}"
               h3.page-title
-                = link_to tab.to_s.split("_").map(&:capitalize).join(' '), competition_path(@competition, tab: parameterized_tab)
+                = link_to tab.to_s.split("_").map(&:capitalize).join(' ').gsub("And", "&"), competition_path(@competition, tab: parameterized_tab)
 
           .hidden-xs.hidden-sm
             = render "interests/button", event: @event, right_margin: true
@@ -29,7 +29,7 @@
           = render "show_participants"
         - elsif params[:tab] == Competition::TAB_PAST_COMPETITIONS
           = render "show_past_competitions"
-        - elsif params[:tab] == Competition::TAB_MEDIA
-          = render "show_media"
+        - elsif params[:tab] == Competition::TAB_FILES_AND_IMAGES
+          = render "show_files_and_images"
         - else
           = render "show_details"

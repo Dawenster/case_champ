@@ -43,12 +43,12 @@ class Competition < ActiveRecord::Base
   TAB_DETAILS           = "details"
   TAB_PARTICIPANTS      = "participants"
   TAB_PAST_COMPETITIONS = "past-competitions"
-  TAB_MEDIA             = "media"
+  TAB_FILES_AND_IMAGES  = "files-and-images"
   TAB_ITEMS = {
     details:           TAB_DETAILS,
     participants:      TAB_PARTICIPANTS,
     past_competitions: TAB_PAST_COMPETITIONS,
-    media:             TAB_MEDIA
+    files_and_images:             TAB_FILES_AND_IMAGES
   }
   DEFAULT_TAB_VALUE = TAB_ITEMS[:details]
 
