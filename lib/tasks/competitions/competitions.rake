@@ -65,7 +65,8 @@ namespace :competitions do
           position_and_organization: position_and_organization,
           contact_email: contact_email,
           contact_phone: contact_phone,
-          image_url: image_url
+          image_url: image_url,
+          published: true
         )
         event.save(validate: false)
 

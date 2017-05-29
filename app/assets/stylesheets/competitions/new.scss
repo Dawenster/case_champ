@@ -25,6 +25,11 @@
   }
 
   .form-container {
+    .row {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
     background-color: white;
     border-radius: 15px;
     margin-top: -100px;

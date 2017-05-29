@@ -6,8 +6,7 @@ class CompetitionMailer < ApplicationMailer
     @name = competition.name
     @organizer_name = event.contact_name
     @organizer_email = event.contact_email
-    # TODO: Change to actual admin competition view page
-    @url = Rails.application.routes.url_helpers.root_url(host: ENV["HOST"])
+    @url = Rails.application.routes.url_helpers.competition_url(competition, event_id: event.id, host: ENV["HOST"])
     mail(to: email_to_use(admin), subject: 'A competition has been submitted')
   end
   

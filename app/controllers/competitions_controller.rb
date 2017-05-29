@@ -35,7 +35,7 @@ class CompetitionsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.published
     if params[:search].present?
       set_search_filter
     else
@@ -51,6 +51,7 @@ class CompetitionsController < ApplicationController
     rescue
       @application_url = @event.application_url
     end
+    flash.now[:notice] = "This competition is not published yet - only admins can see it for now"
   end
 
   private
