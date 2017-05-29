@@ -1,3 +1,45 @@
 .files-and-images-container
   h2.page-title
     | Browse all files & images
+
+    .hidden-xs.pull-right
+      = render "event_files/buttons", event: @event
+  .visible-xs
+    = render "event_files/buttons", event: @event
+
+  .files-and-images-list
+    - event_files = @event.event_files
+    - if event_files.any?
+      hr
+      - event_files.files.each do |file|
+        = icon_for_file(file.public_id)
+        span.filename-display
+          = file.original_filename_with_suffix
+        .pull-right.hidden-xs
+          - if file.user == current_user
+            a href="#{event_file_path(file)}" data-method="delete"
+              i.fa.fa-times.action-icon
+          a href="#{file.secure_url}"
+            i.fa.fa-download.action-icon
+
+        .visible-xs
+          - if file.user == current_user
+            i.fa.fa-times.action-icon
+          a href="#{file.secure_url}"
+            i.fa.fa-download.action-icon
+
+        hr
+
+      .row
+        - event_files.images.each do |image|
+          .col-xs-12.col-sm-6
+            .file-image-container
+              a href="#{image.secure_url}" target="_blank"
+                = cl_image_tag image.public_id, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+              - if image.user == current_user
+                .delete-image-icon
+                  a href="#{event_file_path(image)}" method="delete" data-method="delete"
+                    i.fa.fa-times-circle
+
+    - else
+      | No files uploaded yet

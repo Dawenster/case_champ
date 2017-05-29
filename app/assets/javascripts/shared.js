@@ -30,8 +30,21 @@ function readURL(input) {
   }
 }
 
+function displayFilename(input) {
+  if (input.files && input.files[0]) {
+    var filename = input.value.replace(/.*[\/\\]/, '');
+    $(".display-filename").html(filename);
+  }
+}
+
 $(document).ready(function(){
   $("#image-fileupload").change(function(){
     readURL(this);
+  });
+});
+
+$(document).ready(function(){
+  $("#fileupload").change(function(){
+    displayFilename(this);
   });
 });

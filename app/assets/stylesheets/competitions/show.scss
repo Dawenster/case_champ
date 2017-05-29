@@ -117,5 +117,61 @@
     .past-competitions-container {
       
     }
+
+    .files-and-images-container {
+      .files-and-images-list {
+        margin-top: 40px;
+
+        i.file-icon {
+          font-size: 40px;
+          margin-right: 10px;
+
+          @media (max-width: 992px) {
+            margin-bottom: 10px;
+          }
+        }
+
+        i {
+          color: #54287B;
+
+          &:hover {
+            color: lighten(#54287B, 5%);
+          }
+        }
+
+        i.action-icon {
+          font-size: 24px;
+          margin-top: 10px;
+
+          @media (min-width: 992px) {
+            margin-left: 10px;
+          }
+
+          @media (max-width: 992px) {
+            margin-right: 10px;
+          }
+        }
+
+        .filename-display {
+          font-size: 16px;
+        }
+
+        .file-image-container {
+          position: relative;
+
+          img {
+            width: 100%;
+            margin-bottom: 30px;
+          }
+
+          .delete-image-icon {
+            position: absolute;
+            top: -8px;
+            right: 1px;
+            font-size: 30px;
+          }
+        }
+      }
+    }
   }
 }

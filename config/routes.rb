@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :interests, only: [:create, :destroy]
+
+  resources :event_files, only: [:create, :destroy]
 end

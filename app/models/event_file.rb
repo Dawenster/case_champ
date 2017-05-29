@@ -5,4 +5,11 @@ class EventFile < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
 
+  scope :images, -> { where(resource_type: "image") }
+  scope :files, -> { where(resource_type: "raw") }
+
+  def original_filename_with_suffix
+    "#{original_filename}.#{public_id.split(".").last}"
+  end
+
 end

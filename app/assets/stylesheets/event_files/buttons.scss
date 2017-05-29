@@ -1,0 +1,15 @@
+.event-file-buttons-container {
+  @media (min-width: 992px) {
+    text-align: right;
+  }
+
+  .cloudinary-file-upload {
+    margin-right: 5px;
+  }
+
+  .display-filename {
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}

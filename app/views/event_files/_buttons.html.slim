@@ -1,0 +1,9 @@
+.event-file-buttons-container
+  = form_for EventFile.new do |f|
+    label.cloudinary-file-upload.btn.btn-default.btn-lg for="fileupload"
+      | Select
+    = f.file_field :public_id, id: "fileupload", class: "hide"
+    = f.hidden_field :event_id, value: event.id
+    = f.submit "Upload", class: "btn btn-primary btn-lg"
+
+  .display-filename
