@@ -45,13 +45,31 @@ class CompetitionsController < ApplicationController
 
   def show
     @competition = Competition.find(params[:id])
-    @event = Event.find_by_id(params[:event_id]) || @competition.events.last
+    @event = Event.find_by_id(params[:event_id]) || @competition.events.published.last
     begin
       @application_url = URI::HTTP.build(host: @event.application_url).to_s
     rescue
       @application_url = @event.application_url
     end
-    flash.now[:notice] = "This competition is not published yet - only admins can see it for now"
+    flash.now[:notice] = "This competition is not published yet - only admins can see it for now" unless @event.published
+  end
+
+  def update
+    @competition = Competition.find(params[:id])
+    @event = Event.find(params[:event_id])
+
+    # If admin linked the event to an existing competition
+    if @competition.id != params[:competition][:id].to_i
+      @event.competition_id = params[:competition][:id]
+      @competition.destroy
+    end
+
+    @event.published = true
+    if @event.save
+      redirect_to competition_path(@event.competition, event_id: @event.id), notice: "Event successfully published"
+    else
+      redirect_to competition_path(@event.competition, event_id: @event.id), alert: @event.errors.full_messages.to_sentence
+    end
   end
 
   private

@@ -23,7 +23,7 @@
                 = ef.text_field :sponsor, class: "form-control", placeholder: "Sponsor*", required: true
 
               .form-group
-                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span style='color: red;'>Category*</span>") }, { class: "form-control", required: true }
+                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span>Category*</span>") }, { class: "form-control", required: true }
 
               .form-group
                 = ef.text_area :description, class: "form-control", placeholder: "Brief Description or Topic*", required: true, rows: 5

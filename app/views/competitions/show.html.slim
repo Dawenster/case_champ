@@ -8,20 +8,34 @@
               = @competition.category
           = cl_image_tag @event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
 
-        .left-nav-tabs
-          - Competition::TAB_ITEMS.each do |tab, parameterized_tab|
-            - active = params[:tab].present? ? parameterized_tab == params[:tab] : parameterized_tab == Competition::DEFAULT_TAB_VALUE
-            .left-nav-tab-item class="#{'active' if active}"
-              h3.page-title
-                = link_to tab.to_s.split("_").map(&:capitalize).join(' ').gsub("And", "&"), competition_path(@competition, tab: parameterized_tab)
+        - if @event.published
+          .left-nav-tabs
+            - Competition::TAB_ITEMS.each do |tab, parameterized_tab|
+              - active = params[:tab].present? ? parameterized_tab == params[:tab] : parameterized_tab == Competition::DEFAULT_TAB_VALUE
+              .left-nav-tab-item class="#{'active' if active}"
+                h3.page-title
+                  = link_to tab.to_s.split("_").map(&:capitalize).join(' ').gsub("And", "&"), competition_path(@competition, tab: parameterized_tab)
 
-          .hidden-xs.hidden-sm
-            = render "interests/button", event: @event, right_margin: true
-          .visible-xs.visible-sm
-            = render "interests/button", event: @event, right_margin: false
+            .hidden-xs.hidden-sm
+              = render "interests/button", event: @event, right_margin: true
+            .visible-xs.visible-sm
+              = render "interests/button", event: @event, right_margin: false
 
-          div
-            = link_to "Apply now", @application_url, class: "btn btn-primary btn-lg cta-btn", target: "_blank"
+            div
+              = link_to "Apply now", @application_url, class: "btn btn-primary btn-lg cta-btn", target: "_blank"
+        - else
+          .admin-container
+            = form_for @competition do |f|
+              input.hide name="event_id" value="#{@event.id}"
+              h4
+                | Link to competition:
+              = f.select :id, Competition.name_dropdowns, {}, { class: "form-control" }
+              div
+                = link_to "Edit Content", rails_admin.show_path(model_name: @event.class.name.downcase, id: @event.id), class: "btn btn-default btn-lg", target: "_blank"
+              div
+                = f.submit "Publish", class: "btn btn-primary btn-lg publish-btn"
+
+
 
     .col-xs-12.col-md-8
       .right-details-container

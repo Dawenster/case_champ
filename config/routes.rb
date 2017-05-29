@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "pages#landing"
 
-  resources :competitions do
+  resources :competitions, except: [:edit, :destroy] do
     collection do
       get :confirmation
     end

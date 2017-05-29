@@ -52,4 +52,10 @@ class Competition < ActiveRecord::Base
   }
   DEFAULT_TAB_VALUE = TAB_ITEMS[:details]
 
+  def self.name_dropdowns
+    Competition.order(:name).map do |competition|
+      [competition.name, competition.id]
+    end
+  end
+
 end
