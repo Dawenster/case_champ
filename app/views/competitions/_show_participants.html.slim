@@ -15,9 +15,10 @@
       - interested_users.each do |user|
         .col-xs-4.col-sm-3.col-md-2
           .interested-user-container
-            = cl_image_tag user.image_url, width: 70, height: 70, crop: :thumb, gravity: :face, radius: :max
-            .user-name
-              = user.name
+            a href="#{user_path(user)}"
+              = cl_image_tag user.image_url, width: 70, height: 70, crop: :thumb, gravity: :face, radius: :max
+              .user-name
+                = user.name
 
   - else
     h2.page-title

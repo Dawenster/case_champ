@@ -82,6 +82,15 @@
         .user-name {
           margin-top: 10px;
         }
+
+        a {
+          color: black;
+          text-decoration: none;
+
+          &:hover {
+            color: lighten(black, 50%);
+          }
+        }
       }
 
       .prompt-user-to-mark-interested {

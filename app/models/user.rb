@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def program_and_year
+    "#{program}, Class of #{class_year}"
+  end
+
   private
 
   def default_image_url

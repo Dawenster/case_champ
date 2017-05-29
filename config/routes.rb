@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [] do
+  resources :users, only: [:show] do
     collection do
       post :login
     end

@@ -1,0 +1,33 @@
+.user-show-container
+  .top-info-box
+    .profile-avatar-container
+      = cl_image_tag current_user.image_url, width: 120, height: 120, crop: :thumb, gravity: :face, radius: :max
+    h2.page-title
+      = current_user.name
+    - if current_user.program.present? && current_user.class_year.present?
+      .user-program-and-year
+        = current_user.program_and_year
+
+    .profile-buttons-container
+      = mail_to current_user.email, "Email #{current_user.first_name || current_user.username}", class: "btn btn-primary btn-lg"
+
+  .bottom-details-container
+    - events = current_user.events
+    .row
+      .col-xs-12
+        h2.page-title
+          = "Interested in #{events.count} #{'Competition'.pluralize(events.count)}"
+
+    .row
+      - if events.any?
+        .competition-list-container
+          .row.table-row
+            - events.each_with_index do |event, i|
+              .col-xs-12.col-sm-6.col-md-4
+                = render "competitions/competition_list", competition: event.competition, event: event
+                - if i % 3 == 2
+                  .clearfix.visible-md.visible-lg
+                - if i % 2 == 1
+                  .clearfix.visible-sm
+      - else
+        | No interested competitions
