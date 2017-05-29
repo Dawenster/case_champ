@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :interests
   has_many :events, through: :interests
+  has_many :event_files
 
   scope :admin, -> { where(admin: true) }
 
