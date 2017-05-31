@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
 
   attr_accessible :name, :sponsor, :description, :city, :state_and_country, :min_team_size, :max_team_size, 
                   :num_kellogg_teams_allowed, :logistics, :application, :application_url, :contact_name,
-                  :position_and_organization, :contact_email, :contact_phone, :competition_id, :image_url
+                  :position_and_organization, :contact_email, :contact_phone, :competition_id, :image_url,
+                  :published
 
   attr_accessible :prizes_attributes, :milestones_attributes
 
