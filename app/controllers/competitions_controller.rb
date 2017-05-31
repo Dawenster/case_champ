@@ -45,7 +45,7 @@ class CompetitionsController < ApplicationController
 
   def show
     @competition = Competition.find(params[:id])
-    @event = Event.find_by_id(params[:event_id]) || @competition.events.published.last
+    @event = Event.find_by_id(params[:event_id]) || @competition.events.published.last || @competition.events.last
     begin
       @application_url = URI::HTTP.build(host: @event.application_url).to_s
     rescue
