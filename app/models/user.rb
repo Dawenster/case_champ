@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
     self.class_year = user_details["Class"].to_i
 
     self
+  rescue => e
+    Rollbar.error(e)
+    { message: e.message, error: true }
   end
 
   def interested_in?(event)

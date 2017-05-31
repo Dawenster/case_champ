@@ -9,6 +9,9 @@ class UsersController < ApplicationController
     if Kellogg::User.validate_nu_token(nu_token)
       user = User.find_or_initialize_by(username: username)
       user = user.update_details
+
+      redirect_to root_path, alert: user[:message] and return if user[:error]
+
       user.latest_token = nu_token
 
       begin
