@@ -12,7 +12,7 @@
       = mail_to current_user.email, "Email #{current_user.first_name || current_user.username}", class: "btn btn-primary btn-lg"
 
   .bottom-details-container
-    - events = current_user.events
+    - events = current_user.events.published
     .row
       .col-xs-12
         h2.page-title

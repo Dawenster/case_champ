@@ -46,6 +46,8 @@ class CompetitionsController < ApplicationController
   def show
     @competition = Competition.find(params[:id])
     @event = Event.find_by_id(params[:event_id]) || @competition.events.published.last || @competition.events.last
+    redirect_to(:back || root_path, alert: "You are not an admin") and return if @event.unpublished? && !current_user.is_admin?
+
     begin
       @application_url = URI::HTTP.build(host: @event.application_url).to_s
     rescue

@@ -63,6 +63,10 @@ class Event < ActiveRecord::Base
     end.reverse
   end
 
+  def unpublished?
+    !published
+  end
+
   private
 
   def team_size_range
