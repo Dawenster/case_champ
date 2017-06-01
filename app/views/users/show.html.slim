@@ -1,18 +1,18 @@
 .user-show-container
   .top-info-box
     .profile-avatar-container
-      = cl_image_tag current_user.image_url, width: 120, height: 120, crop: :thumb, gravity: :face, radius: :max, format: :png
+      = cl_image_tag @user.image_url, width: 120, height: 120, crop: :thumb, gravity: :face, radius: :max, format: :png
     h2.page-title
-      = current_user.name
-    - if current_user.program.present? && current_user.class_year.present?
+      = @user.name
+    - if @user.program.present? && @user.class_year.present?
       .user-program-and-year
-        = current_user.program_and_year
+        = @user.program_and_year
 
     .profile-buttons-container
-      = mail_to current_user.email, "Email #{current_user.first_name || current_user.username}", class: "btn btn-primary btn-lg"
+      = mail_to @user.email, "Email #{@user.first_name || @user.username}", class: "btn btn-primary btn-lg"
 
   .bottom-details-container
-    - events = current_user.events.published
+    - events = @user.events.published
     .row
       .col-xs-12
         h2.page-title
