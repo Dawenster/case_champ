@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     "#{program}, Class of #{class_year}"
   end
 
+  def is_admin?
+    !!admin
+  end
+
   private
 
   def default_image_url
