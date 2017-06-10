@@ -22,6 +22,7 @@ nav.navbar
             - else
               li = link_to "Explore competitions", competitions_path, class: "header-to-hide-when-searching"
               li = link_to "My profile", user_path(current_user), class: "header-to-hide-when-searching"
+              li = link_to "Logout", logout_users_path, class: "header-to-hide-when-searching", method: :delete
               li
                 form.form-inline.hide.search-input-form action="#{competitions_path(time: @time_selected.try(:parameterize), category: @category_selected.try(:parameterize), sort: @sort_selected.try(:parameterize))}"
                   .form-group

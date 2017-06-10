@@ -6,6 +6,7 @@
           li = link_to "Explore competitions", competitions_path
           li = link_to "My competitions", user_path(current_user)
           li = link_to "Submit a competition", new_competition_path
+          li = link_to "Logout", logout_users_path, method: :delete
 
         .pull-right.hidden-xs.hidden-sm
           = "Made with <3 by KETI"

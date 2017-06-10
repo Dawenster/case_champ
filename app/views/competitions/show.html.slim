@@ -18,11 +18,8 @@
 
             .hidden-xs.hidden-sm
               = render "interests/button", event: @event, right_margin: true
-            .visible-xs.visible-sm
-              = render "interests/button", event: @event, right_margin: false
-
-            div
-              = link_to "Apply now", @application_url, class: "btn btn-primary btn-lg cta-btn", target: "_blank"
+              div
+                = link_to "Apply now", @application_url, class: "btn btn-primary btn-lg cta-btn", target: "_blank"
         - else
           .admin-container
             = form_for @competition do |f|
@@ -47,3 +44,8 @@
           = render "show_files_and_images"
         - else
           = render "show_details"
+          
+        .visible-xs.visible-sm.mobile-button-container
+          = render "interests/button", event: @event, right_margin: false
+          div
+            = link_to "Apply now", @application_url, class: "btn btn-primary btn-lg cta-btn", target: "_blank"

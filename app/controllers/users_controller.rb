@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def login
     username = params[:username]
     password = params[:password]
-    
+
     redirect_to root_path, alert: "Please use your NetID to sign in" and return if username.include? "@"
 
     nu_token = Kellogg::User.login(username, password)
@@ -31,8 +35,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
+  def logout
+    cookies.delete :nu_token
+    redirect_to root_path, notice: "Successfully logged out"
   end
 
 end
