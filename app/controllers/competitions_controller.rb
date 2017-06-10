@@ -126,7 +126,7 @@ class CompetitionsController < ApplicationController
     cloudinary_object['public_id']
   rescue => e
     Rollbar.error(e)
-    nil
+    Competition::DEFAULT_IMAGE
   end
 
   def send_alerts_to_all_admins
@@ -183,7 +183,7 @@ class CompetitionsController < ApplicationController
 
     case @sort_selected
     when Competition::PRIZE
-      @events = @events.sort_by_prize      
+      @events = @events.sort_by_prize
     when Competition::INTEREST
       @events = @events.sort_by_interest
     else

@@ -17,17 +17,17 @@ class Competition < ActiveRecord::Base
 
   ALL_CATEGORIES = "All Categories"
   CATEGORIES = [
-    ANALYTICS        = "Analytics", 
-    BUSINESS         = "Business", 
-    CASE             = "Case", 
-    CONSULTING       = "Consulting", 
-    DESIGN           = "Design", 
-    ENTREPRENEURSHIP = "Entrepreneurship", 
-    FINANCE          = "Finance", 
-    HEALTH_CARE      = "Health Care", 
-    MARKETING        = "Marketing", 
-    OPERATIONS       = "Operations", 
-    SOCIAL_IMPACT    = "Social Impact", 
+    ANALYTICS        = "Analytics",
+    BUSINESS         = "Business",
+    CASE             = "Case",
+    CONSULTING       = "Consulting",
+    DESIGN           = "Design",
+    ENTREPRENEURSHIP = "Entrepreneurship",
+    FINANCE          = "Finance",
+    HEALTH_CARE      = "Health Care",
+    MARKETING        = "Marketing",
+    OPERATIONS       = "Operations",
+    SOCIAL_IMPACT    = "Social Impact",
     TECHNOLOGY       = "Technology"
   ]
   CATEGORIES_WITH_ALL = [ALL_CATEGORIES] + CATEGORIES
@@ -51,6 +51,8 @@ class Competition < ActiveRecord::Base
     files_and_images:  TAB_FILES_AND_IMAGES
   }
   DEFAULT_TAB_VALUE = TAB_ITEMS[:details]
+
+  DEFAULT_IMAGE = "competition-default_mgxfrl"
 
   def self.name_dropdowns
     Competition.order(:name).map do |competition|

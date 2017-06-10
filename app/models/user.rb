@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   scope :admin, -> { where(admin: true) }
 
+  DEFAULT_IMAGE = "user-default_tykgaw"
+
   def update_details
     user_details = Kellogg::User.fetch_user_details(username)
 
@@ -49,13 +51,9 @@ class User < ActiveRecord::Base
 
   private
 
-  def default_image_url
-    "user-default_tykgaw.png"
-  end
-
   def set_image(url)
     if url.blank?
-      default_image_url
+      DEFAULT_IMAGE
     else
       cloudinary_object = Cloudinary::Uploader.upload(url)
       cloudinary_object['public_id']
