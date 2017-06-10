@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   def update_details
     user_details = Kellogg::User.fetch_user_details(username)
-    
+
     self.first_name = user_details["FirstName"]
     self.last_name  = user_details["LastName"]
     self.email      = user_details["EMail"]
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   private
 
   def default_image_url
-    "default-user_lwemhn.png"
+    "user-default_tykgaw.png"
   end
 
   def set_image(url)
