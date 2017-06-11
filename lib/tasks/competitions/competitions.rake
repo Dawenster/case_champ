@@ -8,10 +8,16 @@ namespace :competitions do
         competition_name          = row[0] || "Dummy data"
 
         event_name                = row[1] || "Dummy data"
+
+        source_url                = row[2]
+
+        if source_url.blank?
+          image_url                 = Competition::DEFAULT_IMAGE
+        else
+          cloudinary_object         = Cloudinary::Uploader.upload(source_url)
+          image_url                 = cloudinary_object['public_id']
+        end
         
-        source_url                = row[2] || "https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Kellogg_School_of_Management.svg/1280px-Kellogg_School_of_Management.svg.png"
-        cloudinary_object         = Cloudinary::Uploader.upload(source_url)
-        image_url                 = cloudinary_object['public_id']
         sponsor                   = row[3] || "Dummy data"
 
         category                  = row[4] || "Dummy data"
