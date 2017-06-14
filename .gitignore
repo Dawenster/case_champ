@@ -19,3 +19,9 @@
 config/initializers/aaa_env_variables.rb
 
 config/initializers/cloudinary.rb
+
+server.csr
+
+server.key
+
+server.pass.key
