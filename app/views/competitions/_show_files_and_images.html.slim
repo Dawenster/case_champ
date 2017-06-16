@@ -35,7 +35,7 @@
           .col-xs-12.col-sm-6
             .file-image-container
               a href="#{image.secure_url}" target="_blank"
-                = cl_image_tag image.public_id, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+                = cl_image_tag image.public_id, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO, secure: true
               - if image.user == current_user
                 .delete-image-icon
                   a href="#{event_file_path(image)}" method="delete" data-method="delete"

@@ -6,7 +6,7 @@
           .ribbon-text-container
             .ribbon-text
               = @competition.category
-          = cl_image_tag @event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO
+          = cl_image_tag @event.image_url, crop: :fill, aspect_ratio: Event::DEFAULT_IMAGE_ASPECT_RATIO, secure: true
 
         - if @event.published
           .left-nav-tabs

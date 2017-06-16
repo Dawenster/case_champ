@@ -35,4 +35,4 @@ nav.navbar
 
               li.header-avatar.hidden-xs
                 a href="#{user_path(current_user)}"
-                  = cl_image_tag current_user.image_url, width: 40, height: 40, crop: :thumb, gravity: :face, radius: :max, format: :png
+                  = cl_image_tag current_user.image_url, width: 40, height: 40, crop: :thumb, gravity: :face, radius: :max, format: :png, secure: true

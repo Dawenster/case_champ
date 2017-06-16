@@ -1,7 +1,7 @@
 .user-show-container
   .top-info-box
     .profile-avatar-container
-      = cl_image_tag @user.image_url, width: 120, height: 120, crop: :thumb, gravity: :face, radius: :max, format: :png
+      = cl_image_tag @user.image_url, width: 120, height: 120, crop: :thumb, gravity: :face, radius: :max, format: :png, secure: true
     h2.page-title
       = @user.name
     - if @user.program.present? && @user.class_year.present?
