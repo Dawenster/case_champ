@@ -25,3 +25,7 @@ server.csr
 server.key
 
 server.pass.key
+
+server.p7b
+
+server.cer
