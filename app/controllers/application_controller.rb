@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :force_ssl
+
   helper_method :landing_page?, :submit_competition_pages?, :add_leading_spaces, :user_logged_in?, :current_user
 
   def landing_page?
@@ -37,6 +39,20 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find_by_latest_token(cookies[:nu_token])
+  end
+
+  private
+
+  def force_ssl(options = {})
+    host = options.delete(:host)
+    unless request.ssl? or Rails.env.development?
+      redirect_options = {:protocol => 'https://', :status => :moved_permanently}
+      redirect_options.merge!(:host => host) if host
+      flash.keep
+      redirect_to redirect_options and return
+    else
+      true
+    end
   end
 
 end
