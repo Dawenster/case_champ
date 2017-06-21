@@ -17,6 +17,7 @@ gem 'rollbar'
 gem 'sass-rails', '~> 5.0'
 gem 'sendgrid-ruby'
 gem 'slim'
+gem 'ssl_requirement'
 gem "twitter-bootstrap-rails"
 gem 'uglifier', '>= 1.3.0'
 
