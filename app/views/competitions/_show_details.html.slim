@@ -71,32 +71,36 @@
       .right-content
         = @event.logistics
 
-.row.details-row
-  .col-xs-12.col-md-3
-    .left-label
-      | Teams
-  .col-xs-12.col-md-9
-    .right-content
-      div
-        span
-          b
-            | Minimum Team Size: 
-        span
-          = @event.min_team_size || "N/A"
+- if @event.min_team_size.present? || @event.max_team_size.present? || @event.num_kellogg_teams_allowed.present?
+  .row.details-row
+    .col-xs-12.col-md-3
+      .left-label
+        | Teams
+    .col-xs-12.col-md-9
+      .right-content
+        - if @event.min_team_size.present?
+          div
+            span
+              b
+                | Minimum Team Size: 
+            span
+              = @event.min_team_size
 
-      div
-        span
-          b
-            | Maximum Team Size: 
-        span
-          = @event.max_team_size || "N/A"
+        - if @event.max_team_size.present?
+          div
+            span
+              b
+                | Maximum Team Size: 
+            span
+              = @event.max_team_size
 
-      div
-        span
-          b
-            | Total # of Kellogg Teams Allowed: 
-        span
-          = @event.num_kellogg_teams_allowed || "N/A"
+        - if @event.num_kellogg_teams_allowed.present?
+          div
+            span
+              b
+                | Total # of Kellogg Teams Allowed: 
+            span
+              = @event.num_kellogg_teams_allowed
 
 .row.details-row
   .col-xs-12.col-md-3
