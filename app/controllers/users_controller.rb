@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    username = params[:username]
+    username = params[:username].try(:downcase)
     password = params[:password]
 
     redirect_to root_path, alert: "Please use your NetID to sign in" and return if username.include? "@"
