@@ -29,7 +29,9 @@ class UsersController < ApplicationController
       # Kellogg tokens expire after 4 hours of inactivity, 12 hours if active
       # Just going to set to 4 hours
       cookies[:nu_token] = { value: nu_token, expires: 4.hours.from_now }
-      redirect_to competitions_path
+      redirect_url = session[:redirect_url]
+      session.delete(:redirect_url)
+      redirect_to redirect_url || competitions_path
     else
       redirect_to root_path, alert: "Username or password incorrect"
     end

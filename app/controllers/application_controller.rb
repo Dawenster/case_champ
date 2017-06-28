@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :force_ssl
+  before_filter :store_desired_url, if: :should_store_url?
 
   helper_method :landing_page?, :submit_competition_pages?, :add_leading_spaces, :user_logged_in?, :current_user
 
@@ -53,6 +54,18 @@ class ApplicationController < ActionController::Base
     else
       true
     end
+  end
+
+  def should_store_url?
+    !user_logged_in? && !on_root_path?
+  end
+
+  def store_desired_url
+    session[:redirect_url] = request.fullpath
+  end
+
+  def on_root_path?
+    request.fullpath == "/"
   end
 
 end
