@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     redirect_to root_path, alert: "Please use your NetID to sign in" and return if username.include? "@"
 
     nu_token = Kellogg::User.login(username, password)
-
     if Kellogg::User.validate_nu_token(nu_token)
       user = User.find_or_initialize_by(username: username)
       user = user.update_details

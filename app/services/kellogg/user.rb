@@ -40,8 +40,8 @@ class Kellogg::User
   end
 
   def self.validate_nu_token(nu_token)
-    url = "#{BASE_URL}/KelloggWebSSOService/api/kelloggToken/ValidateTokenPhp?token=#{nu_token}"
-    response = RestClient.post url, {}, { content_type: :json, accept: :json }
+    url = "#{BASE_URL}/KelloggWebSSOService/api/kelloggToken/ValidateTokenPhp"
+    response = RestClient.post url, {token: nu_token}, { content_type: :json, accept: :json }
     response.body == "true"
   rescue => e
     Rollbar.error(e)
