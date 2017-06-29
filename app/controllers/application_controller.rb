@@ -57,7 +57,10 @@ class ApplicationController < ActionController::Base
   end
 
   def should_store_url?
-    !user_logged_in? && !on_root_path?
+    !user_logged_in? &&
+    !on_root_path? &&
+    !(params[:controller] == "users" && params[:action] == "login") &&
+    !(params[:controller] == "users" && params[:action] == "logout")
   end
 
   def store_desired_url
