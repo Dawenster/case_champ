@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :force_ssl
   before_filter :store_desired_url, if: :should_store_url?
+  before_filter :force_ssl
 
   helper_method :landing_page?, :submit_competition_pages?, :add_leading_spaces, :user_logged_in?, :current_user
 
