@@ -60,4 +60,8 @@ class Competition < ActiveRecord::Base
     end
   end
 
+  def category_enum
+    CATEGORIES
+  end
+
 end

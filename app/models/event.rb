@@ -1,8 +1,9 @@
 class Event < ActiveRecord::Base
+  include EventAdmin
 
   DEFAULT_IMAGE_ASPECT_RATIO = "8:5"
 
-  attr_accessible :name, :sponsor, :description, :city, :state_and_country, :min_team_size, :max_team_size, 
+  attr_accessible :name, :sponsor, :description, :city, :state_and_country, :min_team_size, :max_team_size,
                   :num_kellogg_teams_allowed, :logistics, :application, :application_url, :contact_name,
                   :position_and_organization, :contact_email, :contact_phone, :competition_id, :image_url,
                   :published
@@ -42,7 +43,7 @@ class Event < ActiveRecord::Base
     joins(:milestones)
     .where("milestones.deadline_at = (SELECT MIN(milestones.deadline_at) FROM milestones WHERE milestones.event_id = events.id)")
   }
-  
+
   scope :published, -> { where("published is true") }
   scope :upcoming, -> { first_milestone.where("milestones.deadline_at >= ?", Time.current) }
   scope :past, -> { first_milestone.where("milestones.deadline_at < ?", Time.current) }
