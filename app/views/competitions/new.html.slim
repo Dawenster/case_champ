@@ -23,7 +23,10 @@
                 = ef.text_field :sponsor, class: "form-control", placeholder: "Sponsor*", required: true
 
               .form-group
-                = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span>Category*</span>") }, { class: "form-control", required: true }
+                .visible-xs
+                  = cf.select :category, Competition::CATEGORIES, { include_blank: "Category*" }, { class: "competition_category" }
+                .hidden-xs
+                  = cf.select :category, Competition::CATEGORIES.map{|c| add_leading_spaces(c)}, { include_blank: add_leading_spaces("<span>Category*</span>") }, { class: "form-control competition_category" }
 
               .form-group
                 = ef.text_area :description, class: "form-control", placeholder: "Brief Description or Topic*", required: true, rows: 5

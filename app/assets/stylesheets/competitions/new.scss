@@ -50,22 +50,31 @@
       margin-bottom: 20px;
     }
 
-    input, select {
+    input {
       padding: 25px 19px;
       font-size: 18px;
       border: 1px solid #54287B;
+    }
+
+    select {
+      font-size: 18px;
+      border: 1px solid #54287B;
+      color: #999999;
+      width: 100%;
+      background-color: white;
+
+      @media (max-width: 992px) {
+        padding: 15px 17px;
+      }
+      @media (min-width: 992px) {
+        height: 52px;
+      }
     }
 
     textarea {
       padding: 15px 19px;
       font-size: 18px;
       border: 1px solid #54287B;
-    }
-
-    select, option {
-      height: 52px;
-      padding-left: 20px;
-      color: #999999;
     }
 
     label.cloudinary-event-image-upload {

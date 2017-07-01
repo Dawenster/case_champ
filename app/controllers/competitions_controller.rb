@@ -16,7 +16,8 @@ class CompetitionsController < ApplicationController
   def create
     @competition = Competition.new(competition_params)
 
-    @competition.category = @competition.category[3..-1]
+    # Remove leading &nbsp; spaces, if present
+    @competition.category = @competition.category.gsub(/^\W{3}/,"")
 
     @competition.events.first.image_url = upload_image_to_cloudinary
 

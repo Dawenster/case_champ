@@ -5,21 +5,23 @@ $(document).ready(function(){
 
   checkToTriggerNonBlank();
 
-  $("#competition_category").change(function() {
+  $(".competition_category:visible").change(function() {
     checkToTriggerNonBlank();
   })
 
   function checkToTriggerNonBlank() {
-    var selectedText = $("#competition_category option:selected").val()
+    var selectedText = $(".competition_category:visible option:selected").val()
     if (selectedText == "") {
-      $("#competition_category").css("color", "#999999")
+      $(".competition_category:visible").css("color", "#999999")
+      $(".competition_category:visible").val("")
     } else {
-      $("#competition_category").css("color", "black")
+      $(".competition_category:visible").css("color", "black")
+      $(".competition_category:hidden").val("&nbsp;&nbsp;&nbsp;" + selectedText).change()
     }
   }
 
   $(document).on('nested:fieldAdded', function(event){
-    var field = event.field; 
+    var field = event.field;
     var input = field.find("input");
     if (input.hasClass("prize-field")) {
       var count = $(".prize-field").length;
